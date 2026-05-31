@@ -1,0 +1,11 @@
+{
+  "name": "craken",
+  "owner": {
+    "name": "byExist"
+  },
+  "metadata": {
+    "description": "A marketplace orchestrating Claude Code plugins like tentacles",
+    "version": "0.0.1"
+  },
+  "plugins": []
+}
