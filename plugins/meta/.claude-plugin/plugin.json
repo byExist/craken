@@ -1,0 +1,5 @@
+{
+  "name": "meta",
+  "description": "Meta plugin for Claude Code itself — skills, agents, hooks, plugins, permissions, and other Claude Code configurations",
+  "repository": "https://github.com/byExist/craken"
+}
