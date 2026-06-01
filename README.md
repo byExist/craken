@@ -14,3 +14,4 @@
 
 | Plugin | Description |
 | --- | --- |
+| [meta](plugins/meta) | Author and review Claude Code's own building blocks — skills, agents, hooks, MCP, and more |

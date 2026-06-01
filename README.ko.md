@@ -14,3 +14,4 @@
 
 | Plugin | Description |
 | --- | --- |
+| [meta](plugins/meta) | Claude Code 자체 구성 요소(skill·agent·hook·MCP 등)를 작성·리뷰 |
