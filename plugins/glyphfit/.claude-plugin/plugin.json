@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
+  "name": "glyphfit",
+  "description": "On-demand image downscaling for Claude vision. Prefix Read's file_path with `shrink:` and the image is resized so the smallest glyph still fits the readable floor — keep text legible, shed pixels.",
+  "repository": "https://github.com/byExist/craken",
+  "keywords": ["image", "text-detection", "vision", "tokens", "optimization", "glyph", "downscale"],
+  "license": "MIT",
+  "userConfig": {
+    "outlier_percentile": {
+      "type": "number",
+      "title": "Outlier percentile",
+      "description": "Drop the bottom N% of detected character-box heights as outliers/noise. The smallest remaining height becomes the scaling basis. Range 1–50, recommended 5–10.",
+      "default": 5,
+      "min": 1,
+      "max": 50
+    },
+    "floor_char_height_px": {
+      "type": "number",
+      "title": "Floor character height (px)",
+      "description": "Minimum line height for the smallest non-outlier character in the output. Recommended: 12 (latin only), 18 (hangul/kana, default), 24 (simplified CJK), 32 (traditional CJK). Lower = more aggressive shrink.",
+      "default": 18
+    },
+    "min_pixels_for_action": {
+      "type": "number",
+      "title": "Bypass under N pixels",
+      "description": "Images smaller than this pixel count are passed through unchanged.",
+      "default": 200000
+    },
+    "enabled": {
+      "type": "boolean",
+      "title": "Enable auto-shrink",
+      "description": "When false, Read calls pass through without modification.",
+      "default": true
+    }
+  }
+}

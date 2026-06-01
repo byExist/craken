@@ -14,6 +14,11 @@
       "name": "codebase",
       "source": "./plugins/codebase",
       "description": "Explore and work on any GitHub codebase — research read-only, or edit in isolated worktrees"
+    },
+    {
+      "name": "glyphfit",
+      "source": "./plugins/glyphfit",
+      "description": "On-demand image downscaling for Claude vision — prefix Read with `shrink:` to shed pixels while keeping text legible"
     }
   ]
 }
