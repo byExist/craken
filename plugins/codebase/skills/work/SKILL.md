@@ -46,7 +46,5 @@ git push -u origin <branch>
 
 ## Rules
 
-- All edits happen under `~/.worktree/` — **never edit the `~/.codebase/` research cache**.
+- **Never edit the `~/.codebase/` research cache.**
 - One worktree per branch; reuse it if it already exists.
-- **MUST** ask before pushing; commit locally is fine without asking.
-- Cite file paths when reporting what changed.

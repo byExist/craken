@@ -9,23 +9,19 @@ allowed-tools: Bash(du *), Bash(ls *), Bash(rmdir *), Bash(rm -rf ~/.codebase/*)
 
 $ARGUMENTS
 
+## Cached Repos (disk usage)
+
+!`du -sh ~/.codebase/*/* 2>/dev/null | sort -rh`
+
 ## Workflow
 
-### Step 1: List Cached Repos
+### Step 1: Select
 
-```bash
-du -sh ~/.codebase/*/* 2>/dev/null | sort -rh
-```
+If the list above is empty, tell the user there is nothing to clean and stop. Otherwise present it via AskUserQuestion (multiSelect: true); if a keyword was given, pre-filter to matching repos.
 
-If empty, inform the user and stop.
+### Step 2: Remove
 
-### Step 2: Select
-
-Present the list via AskUserQuestion (multiSelect: true).
-
-### Step 3: Remove
-
-Confirm selection, then delete.
+Confirm the selection, then delete:
 
 ```bash
 rm -rf ~/.codebase/<owner>/<repo>

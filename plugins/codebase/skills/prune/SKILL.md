@@ -9,26 +9,27 @@ allowed-tools: Bash(git *), Bash(du *), Bash(ls *), Bash(rm -rf ~/.worktree/*)
 
 $ARGUMENTS
 
-## Workflow
+## Worktrees (with merge status)
 
-### Step 1: List Worktrees
-
-For each repo under `~/.worktree/`, list worktrees and which branches are already merged into `main`:
-
-```bash
-git -C ~/.worktree/<owner>/<repo> worktree list
-git -C ~/.worktree/<owner>/<repo> branch --merged main
+```!
+for r in ~/.worktree/*/*/; do
+  [ -e "${r}.git" ] || continue
+  echo "## ${r}"
+  git -C "$r" worktree list 2>/dev/null
+  echo "merged into main:"
+  git -C "$r" branch --merged main 2>/dev/null | grep -vE '^\*? *main$'
+done
 ```
 
-If empty, inform the user and stop.
+## Workflow
 
-### Step 2: Select
+### Step 1: Select
 
-Present the worktrees via AskUserQuestion (multiSelect: true), flagging which are **merged** (safe to remove) vs **unmerged** (would lose work).
+If the block above is empty, tell the user there is nothing to prune and stop. Otherwise present the worktrees via AskUserQuestion (multiSelect: true), flagging **merged** (safe to remove) vs **unmerged** (would lose work).
 
-### Step 3: Remove
+### Step 2: Remove
 
-Confirm selection, then for each:
+Confirm, then for each:
 
 ```bash
 cd ~/.worktree/<owner>/<repo>
