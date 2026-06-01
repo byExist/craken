@@ -3,16 +3,12 @@
   "owner": {
     "name": "byExist"
   },
-  "metadata": {
-    "description": "A marketplace orchestrating Claude Code plugins like tentacles",
-    "version": "0.1.0"
-  },
+  "description": "A marketplace orchestrating Claude Code plugins like tentacles",
   "plugins": [
     {
       "name": "meta",
       "source": "./plugins/meta",
-      "description": "Meta plugin for Claude Code itself — skills, agents, hooks, plugins, permissions, and other Claude Code configurations",
-      "version": "0.0.1"
+      "description": "Meta plugin for Claude Code itself — skills, agents, hooks, plugins, permissions, and other Claude Code configurations"
     }
   ]
 }
