@@ -15,3 +15,4 @@
 | Plugin | Description |
 | --- | --- |
 | [meta](plugins/meta) | Author and review Claude Code's own building blocks — skills, agents, hooks, MCP, and more |
+| [codebase](plugins/codebase) | Explore and work on any GitHub codebase — research read-only, or edit in isolated worktrees |
