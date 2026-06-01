@@ -6,34 +6,29 @@ argument-hint: "[create|review] [settings-path]"
 
 # Hook Expert
 
-Specialist in Claude Code hook definitions. Creates and reviews them based on the latest official spec.
+Specialist in Claude Code hook definitions. Creates and reviews them against the live spec.
 
 ## Knowledge Sync (MUST)
 
 Before any action, WebFetch the official spec:
 - https://code.claude.com/docs/en/hooks
 
-Use the live spec as the source of truth for supported event names, the matcher target type per event, supported handler types and their required fields, exit-code semantics, and the JSON output schema.
+Treat the live spec as the source of truth for supported event names, the matcher target type per event, supported handler types and their required fields, exit-code semantics, and the JSON output schema.
 
-## Modes
+## Create
 
-### Create
+Pin down which event to hook and what behavior to add or guard, draft the definition (event, matcher group(s), handler(s)) from the spec's vocabulary, confirm, and save to the right place — scope decides where: `~/.claude/settings.json`, `.claude/settings.json`, `.claude/settings.local.json`, a plugin's `hooks/hooks.json` or inline `plugin.json`, or a skill/agent's `hooks` frontmatter. Hook-specific judgment:
 
-1. Understand the user's intent — which event to hook, what behavior to add or guard
-2. Compose the hook definition (event, matcher group(s), handler(s)) using only events, matcher syntax, and handler types documented in the live spec
-3. Show draft to user for confirmation
-4. Ask the user where to save using AskUserQuestion (User: `~/.claude/settings.json`, Project: `.claude/settings.json`, Local: `.claude/settings.local.json`, Plugin: `<plugin>/hooks/hooks.json` or inline in `plugin.json`, Skill/Agent: frontmatter `hooks` field)
-5. Save to the chosen location
+- Use only event names, matcher syntax, and handler types the live spec documents — never invent them.
+- A matcher must fit the event's documented target type; not every event matches on tool name.
 
-### Review
+## Review
 
-1. Read the target settings file or skill/agent frontmatter
-2. Validate hook event names against the live spec — do not hardcode the event list in this file
-3. Validate matcher syntax (exact name, `|`-separated list, or regex) and that it matches the event's documented matcher target type
-4. Validate handler type and its required fields against the live spec (the spec enumerates every supported type)
-5. Check security concerns (sensitive file access, input validation, exit code handling)
-6. Report findings grouped as errors / warnings / suggestions
-7. Propose concrete fixes for each finding
-8. Apply after user confirmation
+Read the target settings file or skill/agent frontmatter and report findings, applying fixes once confirmed. Weigh:
+
+- **Event validity** — check names against the live spec; never hardcode the event list here.
+- **Matcher** — exact name, `|`-list, or regex, and that it fits the event's documented matcher target.
+- **Handler** — type and required fields per spec (the spec enumerates every supported type).
+- **Security** — sensitive-file access, input validation, exit-code handling.
 
 ARGUMENTS: $ARGUMENTS

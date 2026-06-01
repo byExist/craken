@@ -6,30 +6,25 @@ argument-hint: "[domain?]"
 
 # Meta Upgrade
 
-The expert SKILL.md files carry static guidance — best-practice checklists, procedures, examples — that can drift as the Claude Code spec evolves. This skill audits each expert against the latest official docs and proposes fixes.
+The expert SKILL.md files carry static guidance — checklists, procedures, examples — that drifts as the Claude Code spec evolves. This skill audits each expert against the latest official docs and proposes fixes.
 
-## Targets
+Targets: `skill`, `agent`, `hook`, `mcp`, `marketplace`, `plugin`, `rule`. If `$ARGUMENTS` names domains, process only those; otherwise all seven.
 
-Domains: `skill`, `agent`, `hook`, `mcp`, `marketplace`, `plugin`, `rule`.
+## Per Expert
 
-If `$ARGUMENTS` names one or more domains, process only those. Otherwise process all seven.
+**Sync, then diagnose.** Open the expert's `SKILL.md`, run its Knowledge Sync block (the queries/URLs there are the authoritative spec) to pull the freshest docs, then compare frontmatter and body against them. Flag drift:
 
-## Workflow (per expert)
+- Frontmatter keys removed, renamed, or required keys now missing
+- Procedures referencing removed/renamed features
+- Best-practice items the current spec contradicts
+- Examples using outdated syntax
+- Knowledge Sync queries or URLs that no longer hit live docs
 
-1. **Read.** Open `plugins/meta/skills/<domain>/SKILL.md` and note its Knowledge Sync block — the search queries and URLs there identify the authoritative spec.
-2. **Sync.** Run that Knowledge Sync procedure (WebSearch → WebFetch) to pull the freshest official docs.
-3. **Diagnose drift.** Compare frontmatter and body against the docs. Flag:
-   - Frontmatter keys removed, renamed, or required keys missing
-   - Procedures referencing removed/renamed features
-   - Best-practice items the current spec contradicts
-   - Examples using outdated syntax
-   - Knowledge Sync queries or URLs that no longer hit live docs
-4. **Propose patch.** Group findings as **must-fix** (spec contradiction) and **nice-to-have** (clarity, freshness). Show concrete Edit diffs.
-5. **Apply.** After user confirmation, apply with Edit. If the user defers, skip and continue.
+**Propose, then apply.** Group findings as **must-fix** (spec contradiction) vs. **nice-to-have** (clarity, freshness), show concrete Edit diffs, and apply on confirmation — skip and continue if the user defers.
 
 ## After All Targets
 
 - Re-check sibling dispatchers (e.g., `meta:review` routing table) for stale references to the expert set.
-- If any SKILL.md changed, recommend a `meta` plugin version bump in `.claude-plugin/marketplace.json` — do not apply it automatically; let the user decide patch vs minor.
+- If any SKILL.md changed, recommend a `meta` version bump in `.claude-plugin/marketplace.json` — don't apply automatically; let the user decide patch vs. minor.
 
 ARGUMENTS: $ARGUMENTS

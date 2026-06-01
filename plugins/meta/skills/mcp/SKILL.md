@@ -6,7 +6,7 @@ argument-hint: "[configure|develop|review|debug] [path]"
 
 # MCP Expert
 
-Specialist in MCP (Model Context Protocol) for Claude Code. Configures, develops, reviews, and debugs MCP servers based on the latest official specs.
+Specialist in MCP (Model Context Protocol) for Claude Code. Configures, develops, reviews, and debugs MCP servers against the live specs.
 
 ## Knowledge Sync (MUST)
 
@@ -14,57 +14,25 @@ Before any action, WebFetch the official specs:
 - Claude Code MCP integration: https://code.claude.com/docs/en/mcp
 - MCP protocol: https://modelcontextprotocol.io
 
-Use the live specs as the source of truth for supported transport types (and any deprecated/aliased names), per-transport fields, configuration scopes and their on-disk locations (project / user / local / plugin), env-var interpolation syntax, OAuth options, and per-server flags such as `timeout` / `alwaysLoad` / `headersHelper`.
+Treat the live specs as the source of truth for supported transport types (and any deprecated/aliased names), per-transport fields, configuration scopes and their on-disk locations (project / user / local / plugin), env-var interpolation syntax, OAuth options, and per-server flags such as `timeout` / `alwaysLoad` / `headersHelper`.
 
-## Modes
+## Configure
 
-### Configure
+Compose the server entry per spec, confirm, and save to the right scope — project `.mcp.json`, a plugin's `.mcp.json` or inline `plugin.json`, or user/local via `claude mcp add`. Pick the transport from the spec's current list (not a deprecated alias), and keep secrets in env-var interpolation rather than inline.
 
-Create or update an MCP configuration to add servers to Claude Code.
+## Develop
 
-1. Understand the user's intent — which MCP server(s) to add and which transport (the spec lists current transports and their fields)
-2. Compose the server entry per spec
-3. Show draft to user for confirmation
-4. Ask the user where to save using AskUserQuestion. Use the scope locations the spec documents (project `.mcp.json`, plugin-bundled `.mcp.json` or inline in `plugin.json`, and user/local scopes via `claude mcp add`)
-5. Save to the chosen location
+Scaffold and implement a custom server: pick SDK and transport, expose the intended tools/resources/prompts with proper handlers and input validation, and add a local `.mcp.json` for testing. Confirm the design before building it out.
 
-### Develop
+## Review
 
-Scaffold and implement custom MCP servers.
+Read the target and report findings, applying fixes once confirmed.
 
-1. Understand the user's requirements — what tools, resources, or prompts to expose
-2. Choose appropriate SDK and transport
-3. Scaffold project structure with proper MCP server setup
-4. Implement tool/resource/prompt handlers
-5. Add `.mcp.json` configuration for local testing
-6. Show implementation to user for confirmation
+- **`.mcp.json`** — entries valid per transport type; flag deprecated transports; check env-var interpolation and command paths; no inline secrets or overly broad permissions.
+- **Server code** — protocol compliance (tool/resource/prompt definitions), error handling, input validation, transport config.
 
-### Review
+## Debug
 
-1. Read the target `.mcp.json` or MCP server source code
-2. For `.mcp.json`:
-   - Validate server entries against the spec (required fields per transport type)
-   - Flag use of deprecated transports per the live spec
-   - Check environment variable references and interpolation syntax
-   - Verify command paths and arguments
-   - Check for security concerns (exposed secrets, overly broad permissions)
-3. For MCP server code:
-   - Validate protocol compliance (proper tool/resource/prompt definitions)
-   - Check error handling and input validation
-   - Verify transport configuration
-4. Report findings grouped as errors / warnings / suggestions
-5. Propose concrete fixes for each finding
-6. Apply after user confirmation
-
-### Debug
-
-Troubleshoot MCP server connection and runtime issues.
-
-1. Identify the problematic MCP server from user description
-2. Check `.mcp.json` configuration for errors
-3. Verify server process can start (command exists, dependencies installed)
-4. Check logs and error output
-5. Test connectivity and tool invocations
-6. Report root cause and suggest fixes
+Work the failure from config outward: validate `.mcp.json`, confirm the server process can start (command exists, deps installed), read logs/stderr, then test connectivity and a tool call. Report the root cause, not just the symptom.
 
 ARGUMENTS: $ARGUMENTS
