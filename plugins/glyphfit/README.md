@@ -61,9 +61,9 @@ To steer it yourself:
 
 When it intercepts a `shrink:`-prefixed `Read`, glyphfit doesn't scale by a fixed ratio — it shrinks **only until the smallest glyph reaches the readable floor**:
 
-1. **Detect text lines** — RapidOCR (DBNet) locates text lines. It doesn't *recognize* the characters (recognition is off → ~70% less cost), only measures each line box's height in px.
-2. **Pick the basis height** — the bottom `outlier_percentile`% of heights (default 5%) are dropped as specks/noise; the next-smallest line's height becomes the basis.
-3. **Compute the scale** — `scale = floor / basis` (capped at 1.0): the ratio that lands the smallest non-noise line at `floor_char_height_px` (default 18px). If it's already larger, nothing shrinks.
+1. **Detect text lines** — RapidOCR (DBNet) locates text lines. It doesn't *recognize* the characters (recognition is off → ~70% less cost), only measures each box's **short side** (the smaller of width and height) in px — which tracks glyph size whether the text runs horizontally or vertically (e.g. Japanese).
+2. **Pick the basis size** — the bottom `outlier_percentile`% (default 5%) are dropped as specks/noise; the next-smallest box's short side becomes the basis.
+3. **Compute the scale** — `scale = floor / basis` (capped at 1.0): the ratio that lands that smallest non-noise glyph at `floor_char_height_px` (default 18px). If it's already larger, nothing shrinks.
 4. **Resize once** — a single Lanczos downscale, saved as lossless WebP in the cache. The next read of the same image + settings is a cache hit (~100 ms).
 
 If no text is detected (photos, icons, diagrams), the original is returned unchanged. Because recognition is off, the script (hangul, Han, etc.) can't be known, so the per-script `floor_char_height_px` is set in configuration.
@@ -72,8 +72,8 @@ If no text is detected (photos, icons, diagrams), the original is returned uncha
 
 | Option | Default | Description |
 | --- | --- | --- |
-| `floor_char_height_px` | `18` | Minimum line height (px) for the smallest non-outlier glyph in the output. Recommended: **12** (latin only), **18** (hangul/kana, default), **24** (simplified CJK), **32** (traditional CJK). |
-| `outlier_percentile` | `5` | Bottom N% of detected char heights are discarded as outliers. |
+| `floor_char_height_px` | `18` | Minimum size (px) — the box's short side — for the smallest non-outlier glyph in the output. Recommended: **12** (latin only), **18** (hangul/kana, default), **24** (simplified CJK), **32** (traditional CJK). |
+| `outlier_percentile` | `5` | Bottom N% of detected glyph sizes are discarded as outliers. |
 | `min_pixels_for_action` | `200000` | Images smaller than this are passed through unchanged even with `shrink:`. |
 | `enabled` | `true` | Toggle the whole pipeline. When off, `shrink:` is stripped but the original is returned. |
 
