@@ -16,17 +16,20 @@
 
 ## Why glyphfit?
 
-Claude downsizes every image before billing — to a long edge of ~1568px and ~1.15 megapixels at most — then charges roughly:
+Claude already downsizes every image before billing, down to its model's **native resolution** — a long edge of ~1568px on older models, up to **2576px on Opus 4.7+** (which also raised the per-image cap from ~1,600 to ~4,784 tokens). Cost is then roughly:
 
 ```
-tokens ≈ (resized width × height) / 750   # capped at ~1,600 tokens / image
+tokens ≈ (resized width × height) / 750
 ```
 
-So a 3680×2382 screenshot doesn't cost ~11,700 tokens: Claude first shrinks it under the cap, to about **~1,530 tokens**. But that built-in resize is **content-blind** — it scales by raw pixels with no idea how small the text is. An image that already fits under the cap, or one you read many times, still carries pixels you don't need to read the text.
+So a large screenshot never costs its full pixel count — Claude shrinks it under the cap first. **But that built-in resize is content-blind**: it scales by raw pixels, with no idea how small the text is.
 
-glyphfit downscales with text in mind: it measures where the smallest text line sits and resizes so that line still lands at a readable floor. When the output stays **under Claude's ~1568px / 1.15MP cap**, token cost drops in proportion to the pixels shed — e.g. a 1024×768 text screenshot at floor 18 lands near 635×476, roughly **−60% tokens** in that case, with no visible loss of legibility.
+glyphfit downscales with text in mind instead — it measures the smallest text line and resizes so that line still lands at a readable floor. The catch is real: glyphfit **only saves tokens when its output stays under the platform's native-resolution cap.** That splits the outcomes cleanly:
 
-**Where it helps:** mid-size screenshots already at or under the cap (pixel savings pass straight to tokens), and images read repeatedly (the shrink is cached). **Where it won't:** a huge screenshot still above the cap *after* shrinking — Claude was going to resize it to ~1.15MP regardless, so there's nothing to save until glyphfit's output drops below that envelope.
+- **Where it helps** — images that don't hit the cap to begin with: small or cropped images, zoomed-in captures, or anything whose text is large relative to its resolution. There the pixels shed pass straight to tokens (a 1024×768 text screenshot at floor 18 → ~635×476, ≈ −60%), with no visible loss of legibility. Repeatedly-read images benefit too, since the shrink is cached.
+- **Where it won't** — a dense full-screen capture (4K/retina) already far above the cap. Claude resizes it to the native resolution no matter what, and glyphfit's text-based output lands above that same envelope — so there's **≈ nothing to save**. For these, glyphfit just returns a smaller copy that gets re-shrunk to the same size downstream.
+
+In short: glyphfit pays off on **small, cropped, or zoomed images where text is large for the pixel count** — not on big, dense full-screen captures, which the platform was going to shrink anyway.
 
 ## Installation
 
