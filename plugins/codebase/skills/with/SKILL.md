@@ -11,4 +11,4 @@ allowed-tools: Read, Grep, Glob, Bash(gh *), Bash(git *), Bash(ls *), Bash(mkdir
 
 ## Environment
 
-- Prepared repos live read-only in `~/.codebase/<owner>/<repo>/` — explore freely, but never edit here (use `codebase:work` to change code).
+- Prepared repos live read-only in `~/.codebase/<owner>/<repo>/` — explore freely; to change code, switch to `codebase:work`.

@@ -12,8 +12,9 @@ for r in ~/.worktree/*/*/; do
   [ -e "${r}.git" ] || continue
   echo "## ${r}"
   git -C "$r" worktree list 2>/dev/null
-  echo "merged into main:"
-  git -C "$r" branch --merged main 2>/dev/null | grep -vE '^\*? *main$'
+  default=$(git -C "${r}.bare" symbolic-ref --short HEAD 2>/dev/null)
+  echo "merged into ${default}:"
+  git -C "$r" branch --merged "$default" 2>/dev/null | grep -vE "^\*? *${default}\$"
 done
 ```
 
@@ -38,6 +39,6 @@ Clean up empty owner directories afterward.
 
 ## Rules
 
-- **Never remove `main` or `.bare`** — removing them breaks the repo.
+- **Remove branch worktrees only — keep `.bare`.** It's the shared object store; losing it breaks every worktree.
 - Default to `git branch -d` (refuses unmerged branches). Use `-D` only on explicit user confirmation.
-- Leave `~/.codebase/` alone — use `codebase:clear` for the research cache.
+- Prune only `~/.worktree/` — the research cache is `codebase:clear`'s job.

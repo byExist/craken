@@ -6,7 +6,7 @@ allowed-tools: Bash(gh *), Bash(git *), Bash(ls *), Bash(mkdir *), Bash(cat *)
 
 # Worktree Management
 
-Prepare a repo for **work** (editing) under `~/.worktree/`, separate from the read-only research cache in `~/.codebase/`.
+Prepare a repo for editing under `~/.worktree/`.
 
 ## Existing Worktrees
 
@@ -20,9 +20,8 @@ Prepare a repo for **work** (editing) under `~/.worktree/`, separate from the re
 
 ```
 ~/.worktree/{owner}/{repo}/
-├── .bare/          # object store (bare clone)
+├── .bare/          # object store (bare clone) + remote-tracking refs
 ├── .git            # file: "gitdir: ./.bare"
-├── main/           # baseline worktree
 └── {branch}/       # work worktree (branch name = directory path)
 ```
 
@@ -30,7 +29,7 @@ Prepare a repo for **work** (editing) under `~/.worktree/`, separate from the re
 
 ### Step 1: Resolve Repo
 
-Resolve the keyword to `<owner>/<repo>` — check the **Existing Worktrees** list above first, then `gh search repos` (as in `codebase:repo`). Ask on multiple matches.
+Resolve the keyword to `<owner>/<repo>` — check the **Existing Worktrees** list above first, then `gh search repos`. Ask on multiple matches.
 
 ### Step 2: Prepare the Bare Store
 
@@ -38,11 +37,12 @@ If `<owner>/<repo>` is not in the list above, set up the bare layout. First chec
 
 ```bash
 mkdir -p ~/.worktree/<owner>
-git clone --bare https://github.com/<owner>/<repo>.git ~/.worktree/<owner>/<repo>/.bare
+git clone --bare <url> ~/.worktree/<owner>/<repo>/.bare
 echo "gitdir: ./.bare" > ~/.worktree/<owner>/<repo>/.git
-cd ~/.worktree/<owner>/<repo>
-git worktree add main
 ```
+
+- `<url>`: reuse the research clone's `origin` if it exists (`git -C ~/.codebase/<owner>/<repo> remote get-url origin`), so SSH aliases carry over; otherwise gh's default.
+- `git clone --bare` sets no fetch refspec — add `+refs/heads/*:refs/remotes/origin/*` and `git fetch origin` so `origin/*` exists.
 
 ### Step 3: Add a Worktree
 
@@ -51,10 +51,11 @@ Branch name maps directly to the directory path (e.g. `feature/login` → `featu
 ```bash
 cd ~/.worktree/<owner>/<repo>
 git fetch origin
-git worktree add <branch> -b <branch> origin/main   # new branch off main
-git worktree add <branch> <branch>                   # existing remote/local branch
+default=$(git -C .bare symbolic-ref --short HEAD)        # whatever .bare HEAD points to (master/main)
+git worktree add <branch> -b <branch> "origin/$default"  # new branch off the default
+git worktree add <branch> <branch>                       # existing remote/local branch
 ```
 
 ## Rules
 
-- **Never touch `~/.codebase/`** — that is the research cache, managed by `repo`/`clear`.
+- **Stay within `~/.worktree/`** — `~/.codebase/` is the research cache, owned by `repo`/`clear`.
