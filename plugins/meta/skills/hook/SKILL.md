@@ -1,6 +1,6 @@
 ---
 description: "Expert on Claude Code hook definitions. Use when creating or reviewing hooks in settings files."
-disable-model-invocation: true
+user-invocable: false
 argument-hint: "[create|review] [settings-path]"
 ---
 

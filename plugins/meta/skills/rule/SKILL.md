@@ -1,6 +1,6 @@
 ---
 description: "Expert on Claude Code rule definitions. Use when creating or reviewing modular rules in .claude/rules/ directories."
-disable-model-invocation: true
+user-invocable: false
 argument-hint: "[create|review] [rules-dir-or-file-path]"
 ---
 

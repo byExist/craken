@@ -1,6 +1,6 @@
 ---
 description: "Expert on MCP (Model Context Protocol) for Claude Code. Use when configuring MCP servers (.mcp.json), developing custom MCP servers, or debugging MCP connections."
-disable-model-invocation: true
+user-invocable: false
 argument-hint: "[configure|develop|review|debug] [path]"
 ---
 

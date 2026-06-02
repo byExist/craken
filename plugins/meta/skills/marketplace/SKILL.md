@@ -1,6 +1,6 @@
 ---
 description: "Expert on Claude Code plugin marketplace catalogs. Use when creating or reviewing marketplace.json files for plugin distribution."
-disable-model-invocation: true
+user-invocable: false
 argument-hint: "[create|review] [marketplace-path]"
 ---
 

@@ -1,6 +1,6 @@
 ---
 description: "Expert on Claude Code plugin packages. Use when creating, reviewing, or converting plugin directories."
-disable-model-invocation: true
+user-invocable: false
 argument-hint: "[create|review|convert] [plugin-path]"
 ---
 

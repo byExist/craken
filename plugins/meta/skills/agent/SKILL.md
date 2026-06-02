@@ -1,6 +1,6 @@
 ---
 description: "Expert on Claude Code sub-agent definitions. Use when creating or reviewing agent markdown files for task delegation, background workers, or specialized subagents."
-disable-model-invocation: true
+user-invocable: false
 argument-hint: "[create|review] [agent-path]"
 ---
 

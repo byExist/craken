@@ -1,6 +1,6 @@
 ---
 description: "Expert on Claude Code skill definitions. Use when creating or reviewing skill markdown files (SKILL.md)."
-disable-model-invocation: true
+user-invocable: false
 argument-hint: "[create|review] [skill-path]"
 ---
 
