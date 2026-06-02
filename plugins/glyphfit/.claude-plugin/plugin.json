@@ -1,6 +1,7 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
   "name": "glyphfit",
+  "defaultEnabled": false,
   "description": "On-demand image downscaling for Claude vision. Prefix Read's file_path with `shrink:` and the image is resized so the smallest glyph still fits the readable floor — keep text legible, shed pixels.",
   "repository": "https://github.com/byExist/craken",
   "keywords": ["image", "text-detection", "vision", "tokens", "optimization", "glyph", "downscale"],

@@ -18,7 +18,7 @@
     {
       "name": "glyphfit",
       "source": "./plugins/glyphfit",
-      "description": "On-demand image downscaling for Claude vision — prefix Read with `shrink:` to shed pixels while keeping text legible"
+      "description": "[Deprecated] On-demand image downscaling for Claude vision — prefix Read with `shrink:` to shed pixels while keeping text legible"
     }
   ]
 }

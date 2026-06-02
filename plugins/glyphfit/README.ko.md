@@ -14,6 +14,10 @@
 
 ---
 
+> **Deprecated.** 기본 비활성(`defaultEnabled: false`).
+>
+> glyphfit은 텍스트 크기에 맞춰 이미지를 줄이지만, 플랫폼의 native-resolution cap이 이미 큰 이미지를 축소하며 — 텍스트 기반 축소는 출력이 그 cap 아래에 머물 때만 토큰을 절감합니다. 실제로 그 구간은 좁습니다: 작거나 크롭한 이미지, 저해상도 환경, 또는 반복해서 읽는 이미지. 대부분의 스크린샷은 원본을 그대로 읽어도 비용이 같습니다. 그래도 쓰려면 `claude plugin enable glyphfit` 또는 `/plugin config glyphfit`.
+
 ## 왜 glyphfit인가?
 
 Claude는 과금 전에 모든 이미지를 모델의 **native resolution**까지 먼저 축소합니다 — 구형 모델은 긴 변 ~1568px, **Opus 4.7+는 2576px**까지(이미지당 상한도 ~1,600에서 ~4,784 토큰으로 상향). 그다음 대략 이렇게 과금합니다:
@@ -46,7 +50,7 @@ curl -LsSf https://astral.sh/uv/install.sh | sh   # macOS / Linux — Windows는
 /plugin install glyphfit@plugins
 ```
 
-첫 세션에서 uv가 의존성(Pillow, RapidOCR)을 로컬 virtualenv에 설치하고, text-detection 모델(~50 MB)은 첫 `shrink:` 읽기에서 1회 다운로드합니다.
+첫 세션에서 uv가 의존성(Pillow, RapidOCR)을 로컬 virtualenv에 설치합니다. 검출 모델은 RapidOCR 패키지에 번들돼 있어(~4.5 MB) 런타임 다운로드가 없으며, 첫 실행 비용은 '다운로드'가 아니라 엔진 초기화(모델 로드)입니다.
 
 ## 사용법
 
@@ -85,7 +89,7 @@ curl -LsSf https://astral.sh/uv/install.sh | sh   # macOS / Linux — Windows는
 ## 트레이드오프
 
 - **컨텐츠의 문자 체계에 맞춰 `floor_char_height_px`를 설정하세요.** 한국어/일본어는 ~18, 한자는 ~24가 적절. 기본값은 한국어에 안전한 값입니다.
-- **첫 실행 비용은 두 단계.** 첫 세션에서 `uv sync`가 의존성(Pillow, ONNX Runtime, RapidOCR — 수십 MB, 캐시가 없으면 더 느림)을 설치하고, 첫 `shrink:` 읽기에서 RapidOCR이 ~50 MB 검출 모델을 1회 받습니다. 둘 다 1회성이며 이후 캐시 적중은 ~100 ms입니다.
+- **첫 실행 비용.** 첫 세션에서 `uv sync`가 의존성(Pillow, ONNX Runtime, RapidOCR — 수십 MB, 캐시가 없으면 더 느림)을 설치합니다. 검출 모델은 RapidOCR에 번들돼 있어(~4.5 MB) 별도 다운로드가 없고, 새 프로세스마다 그것을 로드(엔진 초기화)할 뿐입니다. 이후 캐시 적중은 ~100 ms입니다.
 - **`shrink:`가 no-op일 수 있음.** 검출되는 텍스트가 없거나(사진/아이콘/다이어그램), 이미 작거나(~200k px 미만), 텍스트가 이미 floor 이상이면 원본이 그대로 반환됩니다.
 - **캐시 적중은 거의 무료.** 같은 이미지 + 같은 설정이면 ~100 ms.
 

@@ -14,6 +14,10 @@
 
 ---
 
+> **Deprecated.** Disabled by default (`defaultEnabled: false`).
+>
+> glyphfit shrinks images by text size, but the platform's native-resolution cap already downsizes large images — and a text-aware shrink only saves tokens when its output stays under that cap. In practice that window is narrow: small or cropped images, low-resolution setups, or images read repeatedly. For most screenshots, reading the original costs the same. To use it anyway: `claude plugin enable glyphfit` or `/plugin config glyphfit`.
+
 ## Why glyphfit?
 
 Claude already downsizes every image before billing, down to its model's **native resolution** — a long edge of ~1568px on older models, up to **2576px on Opus 4.7+** (which also raised the per-image cap from ~1,600 to ~4,784 tokens). Cost is then roughly:
@@ -46,7 +50,7 @@ Then add and install the plugin:
 /plugin install glyphfit@plugins
 ```
 
-On first session, uv provisions the dependencies (Pillow, RapidOCR) into a local virtualenv; the text-detection model (~50 MB) is downloaded once on the first `shrink:` read.
+On first session, uv provisions the dependencies (Pillow, RapidOCR) into a local virtualenv. The detection model ships bundled with RapidOCR (~4.5 MB), so there is no runtime download — the first-run cost is engine initialization (model load), not a fetch.
 
 ## Usage
 
@@ -85,7 +89,7 @@ Set via `/plugin config glyphfit`.
 ## Trade-offs
 
 - **Set `floor_char_height_px` to match your content's script.** Korean/Japanese needs ~18, Chinese characters need ~24. Default is safe for Korean.
-- **First-run cost, in two parts.** On the first session, `uv sync` installs the dependencies (Pillow, ONNX Runtime, RapidOCR — tens of MB, slower on a cold cache). On the first `shrink:` read, RapidOCR fetches its ~50 MB detection model once. Both are one-time; cached reads after that are ~100 ms.
+- **First-run cost.** On the first session, `uv sync` installs the dependencies (Pillow, ONNX Runtime, RapidOCR — tens of MB, slower on a cold cache). The detection model is bundled with RapidOCR (~4.5 MB), so there is no separate download; each new process just loads it (engine init). Cached reads after that are ~100 ms.
 - **`shrink:` can be a no-op.** The original is returned unchanged when the image has no detectable text (photos, icons, diagrams), is already small (under ~200k px), or its text already sits at or above the floor.
 - **Cache hits are nearly free.** Same image + same settings hits the cache in ~100 ms.
 
