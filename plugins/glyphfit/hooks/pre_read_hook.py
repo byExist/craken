@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """PreToolUse hook for Read: opt-in, text-aware image downscaling.
 
-When `file_path` starts with `shrink:`, the hook strips the prefix, downscales the
-image so its smallest text line stays readable, caches the result, and rewrites
-`file_path` to the cached copy via `updatedInput`. Other shrink: cases (non-image,
-disabled, too small, no text, failure) pass through with the original path.
+When `file_path` contains the `shrink:` marker, the hook downscales the image so its
+smallest text line stays readable, caches the result, and rewrites `file_path` to
+the cached copy via `updatedInput`. Other shrink: cases (non-image, disabled, too
+small, no text, failure) pass through with the original path.
 
 For a plain (non-`shrink:`) Read of an image, the hook stays out of the way but, on
 the first such read in a session, injects a one-time note telling Claude when to
@@ -160,8 +160,11 @@ def disabled_hint(session_id: str) -> str | None:
 
 
 def shrink_source(file_path: str) -> Path:
-    """Strip `shrink:` and validate; hand back the bare path for a non-image."""
-    stripped = file_path[len(SHRINK_PREFIX):].strip()
+    """Extract the real path after the `shrink:` marker; hand back the bare path
+    for a non-image. The marker may appear mid-path, not only as a prefix, so
+    locate it anywhere and take everything after it as the real path."""
+    marker = file_path.find(SHRINK_PREFIX)
+    stripped = file_path[marker + len(SHRINK_PREFIX):].strip() if marker != -1 else ""
     if not stripped:
         passthrough()
     src = Path(stripped)
@@ -250,12 +253,12 @@ def main() -> None:
     # through untouched; a shrink: Read only has its prefix stripped so the path
     # still resolves — no detection, no hint, no rewrite to a cached copy.
     if not config.enabled:
-        if file_path.startswith(SHRINK_PREFIX):
+        if SHRINK_PREFIX in file_path:
             src = shrink_source(file_path)
             emit_rewrite(src, disabled_hint(str(event.get("session_id") or "")))
         passthrough()
 
-    if not file_path.startswith(SHRINK_PREFIX):
+    if SHRINK_PREFIX not in file_path:
         # Plain Read: nudge once per session on the first image.
         maybe_hint(file_path, str(event.get("session_id") or ""))
 
