@@ -5,10 +5,6 @@ argument-hint: "[keyword]"
 allowed-tools: Bash(git *), Bash(du *), Bash(ls *), Bash(rm -rf ~/.worktree/*)
 ---
 
-## Request
-
-$ARGUMENTS
-
 ## Worktrees (with merge status)
 
 ```!

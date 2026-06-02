@@ -4,31 +4,11 @@ argument-hint: "<repo-name(s)> <request>"
 allowed-tools: Read, Grep, Glob, Bash(gh *), Bash(git *), Bash(ls *), Bash(mkdir *), Bash(cd *), Task
 ---
 
-## User Request
+## Setup
 
-$ARGUMENTS
+1. Parse the request: target repo name(s), and a branch if one is named.
+2. Prepare each repo under `~/.codebase/<owner>/<repo>/` via `codebase:repo` (use the named branch when checking out).
 
-## Workflow
+## Environment
 
-### Step 1: Parse Request
-
-Identify from the user request:
-
-- Related repo name(s) (one or more)
-- Task type (structure exploration, API search, dependency tracing, issue analysis, etc.)
-
-### Step 2: Prepare Code
-
-Follow the `codebase:repo` skill instructions to prepare repos under `~/.codebase/<owner>/<repo>/`.
-If the user mentions a specific branch, use it as the target branch when following the checkout step.
-
-### Step 3: Analyze
-
-Analyze the prepared code to answer the user's request.
-Use Grep and Glob to locate relevant files before reading.
-
-### Step 4: Report Results
-
-- Cite file paths and line numbers as evidence
-- Present results in a structured format
-- For multi-repo results, organize by repo
+- Prepared repos live read-only in `~/.codebase/<owner>/<repo>/` — explore freely, but never edit here (use `codebase:work` to change code).

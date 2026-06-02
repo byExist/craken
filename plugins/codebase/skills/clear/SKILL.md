@@ -5,10 +5,6 @@ argument-hint: "[keyword]"
 allowed-tools: Bash(du *), Bash(ls *), Bash(rmdir *), Bash(rm -rf ~/.codebase/*)
 ---
 
-## Request
-
-$ARGUMENTS
-
 ## Cached Repos (disk usage)
 
 !`du -sh ~/.codebase/*/* 2>/dev/null | sort -rh`
