@@ -56,7 +56,3 @@ Research clones land in `~/.codebase/` and stay read-only. Edits happen in isola
 ```
 
 Exploring reads the latest `main`; working branches off into a worktree whose path mirrors the branch name. The two trees stay fully separate, so analysis stays clean while you edit.
-
-## License
-
-MIT.
