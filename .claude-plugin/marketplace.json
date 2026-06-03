@@ -19,6 +19,11 @@
       "name": "glyphfit",
       "source": "./plugins/glyphfit",
       "description": "[Deprecated] On-demand image downscaling for Claude vision — prefix Read with `shrink:` to shed pixels while keeping text legible"
+    },
+    {
+      "name": "voice",
+      "source": "./plugins/voice",
+      "description": "Author your own response-voice personas — create with /voice:new, switch with /voice:use, restored each session"
     }
   ]
 }

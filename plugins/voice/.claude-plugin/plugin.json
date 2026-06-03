@@ -1,0 +1,5 @@
+{
+  "name": "voice",
+  "description": "Author your own response-voice personas — create with /voice:new, switch with /voice:use, restored each session",
+  "repository": "https://github.com/byExist/craken"
+}
