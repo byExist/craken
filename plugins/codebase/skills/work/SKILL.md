@@ -13,4 +13,4 @@ allowed-tools: Read, Grep, Glob, Edit, Write, Bash(gh *), Bash(git *), Bash(ls *
 ## Environment
 
 - Work inside `~/.worktree/<owner>/<repo>/<branch>/`.
-- `~/.codebase/` stays read-only here — it's the research cache.
+- `~/.codebase/` stays read-only here — it holds the local clones.

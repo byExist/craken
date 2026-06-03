@@ -1,11 +1,11 @@
 ---
-description: "Clean up locally cached repos under ~/.codebase/. List repos with disk usage, select and remove unused ones."
+description: "Clean up locally cloned repos under ~/.codebase/. List repos with disk usage, select and remove unused ones."
 disable-model-invocation: true
 argument-hint: "[keyword]"
 allowed-tools: Bash(du *), Bash(ls *), Bash(rmdir *), Bash(rm -rf ~/.codebase/*)
 ---
 
-## Cached Repos (disk usage)
+## Local Clones (disk usage)
 
 !`du -sh ~/.codebase/*/* 2>/dev/null | sort -rh`
 

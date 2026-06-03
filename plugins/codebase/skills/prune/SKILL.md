@@ -41,4 +41,3 @@ Clean up empty owner directories afterward.
 
 - **Remove branch worktrees only — keep `.bare`.** It's the shared object store; losing it breaks every worktree.
 - Default to `git branch -d` (refuses unmerged branches). Use `-D` only on explicit user confirmation.
-- Prune only `~/.worktree/` — the research cache is `codebase:clear`'s job.

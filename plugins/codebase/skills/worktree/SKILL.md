@@ -1,5 +1,5 @@
 ---
-description: "Bare clone + worktree setup under ~/.worktree/. Referenced by the work skill to prepare an isolated working tree, separate from the read-only research cache."
+description: "Bare clone + worktree setup under ~/.worktree/. Referenced by the work skill to prepare an isolated working tree, separate from the read-only local clones."
 user-invocable: false
 allowed-tools: Bash(gh *), Bash(git *), Bash(ls *), Bash(mkdir *), Bash(cat *)
 ---
@@ -41,7 +41,7 @@ git clone --bare <url> ~/.worktree/<owner>/<repo>/.bare
 echo "gitdir: ./.bare" > ~/.worktree/<owner>/<repo>/.git
 ```
 
-- `<url>`: reuse the research clone's `origin` if it exists (`git -C ~/.codebase/<owner>/<repo> remote get-url origin`), so SSH aliases carry over; otherwise gh's default.
+- `<url>`: reuse the local clone's `origin` if it exists (`git -C ~/.codebase/<owner>/<repo> remote get-url origin`), so SSH aliases carry over; otherwise gh's default.
 - `git clone --bare` sets no fetch refspec — add `+refs/heads/*:refs/remotes/origin/*` and `git fetch origin` so `origin/*` exists.
 
 ### Step 3: Add a Worktree
@@ -58,4 +58,4 @@ git worktree add <branch> <branch>                       # existing remote/local
 
 ## Rules
 
-- **Stay within `~/.worktree/`** — `~/.codebase/` is the research cache, owned by `repo`/`clear`.
+- **Stay within `~/.worktree/`** — `~/.codebase/` holds the read-only clones, owned by `repo`/`clear`.
