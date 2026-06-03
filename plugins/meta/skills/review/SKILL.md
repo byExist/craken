@@ -1,29 +1,32 @@
 ---
-description: "Review a Claude Code harness artifact by dispatching to the appropriate meta expert skill (skill, agent, hook, mcp, marketplace, plugin, rule)."
+description: "Review one or more Claude Code harness artifacts by enumerating their review units and dispatching each to the matching meta expert skill (skill, agent, hook, mcp, marketplace, plugin, rule)."
 disable-model-invocation: true
-argument-hint: "[path-or-keyword]"
+argument-hint: "[path-or-keyword ...]"
 ---
 
 # Review Dispatcher
 
-Identify the domain of the target artifact and invoke the matching meta expert skill in review mode. This skill routes; it does not evaluate.
+Work out which units a target breaks down into, then hand each to its matching meta expert in review mode. This skill routes; it does not evaluate.
 
 ## Workflow
 
-1. **Resolve target.** Parse `$ARGUMENTS` — a file/directory path, a bare domain keyword, or natural-language phrasing that names a file. If empty or ambiguous, ask what to review.
-2. **Classify domain.** Apply the routing table below; first match wins. If several match or none do, list the candidates and ask via AskUserQuestion (single-select). Given only a domain keyword, ask for the path first.
-3. **Dispatch.** Invoke the matched expert via `Skill(skill="meta:<domain>", args="review <path>")`. For multiple targets, dispatch sequentially.
+1. **Resolve targets.** Parse `$ARGUMENTS` — one or more file/directory paths, bare domain keywords, or natural-language phrasing that names files. If empty or ambiguous, ask what to review. Given only a domain keyword with no path, ask for the path.
+2. **Enumerate review units.** For each target, list what to review:
+   - A directory with `.claude-plugin/plugin.json` → one `plugin` unit. Review the package against the plugin spec; do **not** descend into its skills/agents/hooks.
+   - Any single file or manifest the table matches → one unit of that domain.
+   - A plain directory (no `plugin.json`) → every leaf the table matches beneath it, but stop at any nested `plugin.json` (that subtree is one `plugin` unit, not its leaves).
+3. **Dispatch each unit.** For every enumerated unit, invoke `Skill(skill="meta:<domain>", args="review <path>")`, one at a time.
 
-## Routing Table
+## Identification Table
 
-| Target | Domain |
+| Artifact | Domain |
 | --- | --- |
-| `**/SKILL.md` or a directory containing one | `skill` |
+| Directory with `.claude-plugin/plugin.json` | `plugin` |
+| `**/SKILL.md` | `skill` |
 | `**/.claude/agents/**/*.md`, `**/agents/*.md` | `agent` |
-| `settings.json` / `settings.local.json` containing a `hooks` key, or a hook script referenced from one | `hook` |
+| `settings.json` / `settings.local.json` with a `hooks` key, or a hook script referenced from one | `hook` |
 | `**/.mcp.json`, `**/mcp.json` | `mcp` |
 | `**/.claude-plugin/marketplace.json`, `**/marketplace.json` | `marketplace` |
-| Directory containing `.claude-plugin/plugin.json` | `plugin` |
 | `**/.claude/rules/**/*.md`, `**/rules/*.md` | `rule` |
 
 ARGUMENTS: $ARGUMENTS
