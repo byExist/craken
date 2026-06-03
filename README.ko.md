@@ -16,4 +16,5 @@
 | --- | --- |
 | [meta](plugins/meta) | Claude Code 자체 구성 요소(skill·agent·hook·MCP 등)를 작성·리뷰 |
 | [codebase](plugins/codebase) | 어떤 GitHub 코드베이스든 조사·작업 — 읽기 전용 분석 또는 격리 worktree 편집 |
+| [voice](plugins/voice) | 나만의 응답 페르소나를 직접 정의 — `/voice:new`로 만들고 `/voice:use`로 전환, 세션마다 복원 |
 | [glyphfit](plugins/glyphfit) | [Deprecated] Claude 비전용 on-demand 이미지 다운스케일 — `shrink:` prefix로 텍스트는 살리고 픽셀 절감 |
