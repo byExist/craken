@@ -2,7 +2,7 @@
 description: "Clean up worktrees and merged branches under ~/.worktree/. List worktrees with merge status, select and remove merged or stale ones."
 disable-model-invocation: true
 argument-hint: "[keyword]"
-allowed-tools: Bash(git *), Bash(du *), Bash(ls *), Bash(rm -rf ~/.worktree/*)
+allowed-tools: Bash(git *), Bash(ls *), Bash(cd *), Bash(rm -rf ~/.worktree/*)
 ---
 
 ## Worktrees (with merge status)

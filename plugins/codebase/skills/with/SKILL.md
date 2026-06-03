@@ -1,5 +1,5 @@
 ---
-description: "Work with any GitHub codebase. Explore project structure, find APIs, trace dependencies, and analyze issue root causes."
+description: "Explore and understand any GitHub codebase read-only: project structure, APIs, dependency traces, and issue root causes. Use when reading or investigating a repo without editing it."
 argument-hint: "<repo-name(s)> <request>"
 allowed-tools: Read, Grep, Glob, Bash(gh *), Bash(git *), Bash(ls *), Bash(mkdir *), Bash(cd *), Task
 ---

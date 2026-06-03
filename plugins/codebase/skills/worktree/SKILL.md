@@ -1,7 +1,7 @@
 ---
 description: "Bare clone + worktree setup under ~/.worktree/. Referenced by the work skill to prepare an isolated working tree, separate from the read-only local clones."
 user-invocable: false
-allowed-tools: Bash(gh *), Bash(git *), Bash(ls *), Bash(mkdir *), Bash(cat *)
+allowed-tools: Bash(gh *), Bash(git *), Bash(ls *), Bash(mkdir *), Bash(cd *), Bash(echo *)
 ---
 
 # Worktree Management
