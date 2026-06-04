@@ -11,7 +11,7 @@ Specialist in Claude Code hook definitions. Creates and reviews them against the
 ## Knowledge Sync (MUST)
 
 Before any action, WebFetch the official spec:
-- https://code.claude.com/docs/en/hooks
+- https://code.claude.com/docs/en/hooks.md
 
 Treat the live spec as the source of truth for supported event names, the matcher target type per event, supported handler types and their required fields, exit-code semantics, and the JSON output schema.
 

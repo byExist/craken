@@ -11,7 +11,7 @@ Specialist in Claude Code plugin packages. Creates, reviews, and converts them a
 ## Knowledge Sync (MUST)
 
 Before any action, WebFetch the official spec:
-- https://code.claude.com/docs/en/plugins-reference
+- https://code.claude.com/docs/en/plugins-reference.md
 
 Treat the live spec as the source of truth for the `plugin.json` manifest schema, the full set of supported components (skills, commands, agents, hooks, MCP servers, LSP servers, and experimental ones such as monitors and themes), default directory layout, manifest path-behavior rules (which fields replace vs. add to defaults), `userConfig` and channels, and the available environment-variable substitutions.
 

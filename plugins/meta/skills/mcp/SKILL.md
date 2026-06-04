@@ -11,8 +11,8 @@ Specialist in MCP (Model Context Protocol) for Claude Code. Configures, develops
 ## Knowledge Sync (MUST)
 
 Before any action, WebFetch the official specs:
-- Claude Code MCP integration: https://code.claude.com/docs/en/mcp
-- MCP protocol: https://modelcontextprotocol.io
+- Claude Code MCP integration: https://code.claude.com/docs/en/mcp.md
+- MCP protocol: https://modelcontextprotocol.io/llms.txt
 
 Treat the live specs as the source of truth for supported transport types (and any deprecated/aliased names), per-transport fields, configuration scopes and their on-disk locations (project / user / local / plugin), env-var interpolation syntax, OAuth options, and per-server flags such as `timeout` / `alwaysLoad` / `headersHelper`.
 

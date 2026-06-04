@@ -11,7 +11,7 @@ Specialist in Claude Code modular rule files (`.claude/rules/*.md`). Creates and
 ## Knowledge Sync (MUST)
 
 Before any action, WebFetch the official spec:
-- https://code.claude.com/docs/en/memory (the `.claude/rules/` section covers modular rules, the `paths` frontmatter, glob support, scopes, symlinks, plugin-provided rules, and known limitations)
+- https://code.claude.com/docs/en/memory.md (the `.claude/rules/` section covers modular rules, the `paths` frontmatter, glob support, scopes, symlinks, plugin-provided rules, and known limitations)
 
 Treat the live spec as the source of truth for recognized frontmatter, glob syntax, loading semantics (always-loaded vs. path-scoped, and when path-scoped rules do / don't inject), symlink behavior, plugin-provided rules, and user- vs. project-level precedence.
 

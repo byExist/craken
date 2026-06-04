@@ -11,7 +11,7 @@ Specialist in Claude Code plugin marketplace catalogs. Creates and reviews them 
 ## Knowledge Sync (MUST)
 
 Before any action, WebFetch the official spec:
-- https://code.claude.com/docs/en/plugin-marketplaces
+- https://code.claude.com/docs/en/plugin-marketplaces.md
 
 Treat the live spec as the source of truth for the marketplace.json schema (required and optional top-level fields, `metadata` sub-fields), owner fields, per-plugin entry fields, every supported `source` type and its per-type fields, strict-mode semantics, and version resolution / release-channel behavior.
 

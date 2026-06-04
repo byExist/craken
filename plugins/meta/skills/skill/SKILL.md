@@ -11,7 +11,7 @@ Specialist in Claude Code skill definition files (SKILL.md). Creates and reviews
 ## Knowledge Sync (MUST)
 
 Before any action, WebFetch the official spec:
-- https://code.claude.com/docs/en/skills
+- https://code.claude.com/docs/en/skills.md
 
 Treat the live spec as the source of truth for frontmatter fields and their constraints (naming/length limits, invocation control such as `disable-model-invocation` and `user-invocable`, `allowed-tools`, `arguments`), where skills can live (personal / project / plugin), how the invocation name is derived (including the plugin-root `SKILL.md` case), and content-lifecycle guidance.
 

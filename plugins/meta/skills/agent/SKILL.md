@@ -11,7 +11,7 @@ Specialist in Claude Code sub-agent definition files. Creates and reviews them a
 ## Knowledge Sync (MUST)
 
 Before any action, WebFetch the official spec:
-- https://code.claude.com/docs/en/sub-agents
+- https://code.claude.com/docs/en/sub-agents.md
 
 Treat the live spec as the source of truth for the full set of frontmatter fields and which are required, available tools and the `Agent(agent_type)` tool-restriction notation, permission modes, plugin-subagent restrictions (fields the spec says are ignored when loaded from a plugin), and `background` / `isolation` / `memory` / `effort` / `skills` behavior.
 
