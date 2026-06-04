@@ -1,4 +1,4 @@
-<h1 align="center">atlassian</h1>
+<h1 align="center">Atlassian</h1>
 
 <p align="center">
   Claude에서 Jira·Confluence 다루기 — 이슈·페이지 본문을 납작해진 ADF가 아니라 구조가 살아있는 Markdown으로.

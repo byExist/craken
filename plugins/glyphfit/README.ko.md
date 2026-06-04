@@ -1,4 +1,4 @@
-<h1 align="center">glyphfit</h1>
+<h1 align="center">Glyphfit</h1>
 
 <p align="center">
   Claude 비전을 위한 on-demand 이미지 다운스케일 — <code>Read</code>에 <code>shrink:</code> prefix를 붙이면 텍스트는 살리고 픽셀은 줄입니다.

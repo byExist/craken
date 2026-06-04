@@ -1,4 +1,4 @@
-<h1 align="center">glyphfit</h1>
+<h1 align="center">Glyphfit</h1>
 
 <p align="center">
   On-demand image downscaling for Claude vision — prefix <code>Read</code> with <code>shrink:</code> to shed pixels while keeping text legible.

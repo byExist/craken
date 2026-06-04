@@ -1,4 +1,4 @@
-<h1 align="center">voice</h1>
+<h1 align="center">Voice</h1>
 
 <p align="center">
   Define your own response personas and switch between them — no presets, just the voices you make.

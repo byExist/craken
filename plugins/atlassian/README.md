@@ -1,4 +1,4 @@
-<h1 align="center">atlassian</h1>
+<h1 align="center">Atlassian</h1>
 
 <p align="center">
   Jira & Confluence in Claude — issue and page bodies as faithful Markdown, not flattened ADF.

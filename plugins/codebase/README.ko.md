@@ -1,4 +1,4 @@
-<h1 align="center">codebase</h1>
+<h1 align="center">Codebase</h1>
 
 <p align="center">
   어떤 GitHub 코드베이스든 조사하고 작업 — 읽기 전용으로 분석하거나, 격리된 worktree에서 브랜치를 떠 편집.

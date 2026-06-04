@@ -1,4 +1,4 @@
-<h1 align="center">meta</h1>
+<h1 align="center">Meta</h1>
 
 <p align="center">
   Expert skills for building Claude Code itself — author and review skills, agents, hooks, MCP servers, rules, plugins, and marketplaces, to spec.

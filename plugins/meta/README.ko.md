@@ -1,4 +1,4 @@
-<h1 align="center">meta</h1>
+<h1 align="center">Meta</h1>
 
 <p align="center">
   Claude Code 자체를 만드는 전문가 스킬 모음 — skill, agent, hook, MCP 서버, rule, plugin, marketplace를 스펙에 맞게 작성하고 리뷰합니다.

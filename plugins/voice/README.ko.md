@@ -1,4 +1,4 @@
-<h1 align="center">voice</h1>
+<h1 align="center">Voice</h1>
 
 <p align="center">
   나만의 응답 페르소나를 정의하고 전환 — 프리셋 없이, 직접 만든 목소리로.

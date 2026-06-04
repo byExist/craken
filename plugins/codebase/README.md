@@ -1,4 +1,4 @@
-<h1 align="center">codebase</h1>
+<h1 align="center">Codebase</h1>
 
 <p align="center">
   Explore and work on any GitHub codebase — research it read-only, or branch and edit it in isolated worktrees.
