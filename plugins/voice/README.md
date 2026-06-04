@@ -18,7 +18,7 @@
 
 Claude has one default way of responding, but the voice you want shifts with the task — conclusion-first and terse for a quick check, Socratic when you're thinking something through, a careful reviewer when weighing a change. voice lets you capture each of those as a **persona** and switch between them.
 
-Instead of shipping a fixed menu of presets, voice hands you the authoring tool: describe how you want Claude to think and respond, and `/voice:new` writes it into a reusable persona. Your personas persist across sessions and restore automatically.
+Instead of shipping a fixed menu of presets, voice hands you the authoring tool: describe how you want Claude to think and respond, and `/voice:new` writes it into a reusable persona. The voice you pick is restored automatically when you resume a session.
 
 ## Installation
 
@@ -26,6 +26,12 @@ Instead of shipping a fixed menu of presets, voice hands you the authoring tool:
 /plugin marketplace add byExist/craken
 /plugin install voice@craken
 ```
+
+Optionally, set a default voice with `/plugin config voice` — loaded at the start of any session that hasn't picked one with `/voice:use`, including brand-new ones:
+
+| Setting | Required | Description |
+| --- | --- | --- |
+| default | | A saved persona name (see `/voice:list`). Leave empty for none. |
 
 ## Skills
 
@@ -48,4 +54,4 @@ Instead of shipping a fixed menu of presets, voice hands you the authoring tool:
     └── <session-id>        ← active persona for that session
 ```
 
-`/voice:new` interviews you and writes a persona file. `/voice:use` records your choice for the current session and adopts that voice. A SessionStart hook reads that choice whenever a session starts or resumes and restores the persona as context — so the voice survives restarts. Because the choice is keyed by session ID, different sessions can run different voices at once, and `/voice:reset` clears it.
+`/voice:new` interviews you and writes a persona file. `/voice:use` records your choice for the current session and adopts that voice. A SessionStart hook reads that choice whenever a session starts or resumes and restores the persona as context — so the voice survives restarts. Because the choice is keyed by session ID, different sessions can run different voices at once. `/voice:reset` clears the selection, falling back to the configured default voice if one is set.

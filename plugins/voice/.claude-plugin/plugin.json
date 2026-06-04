@@ -1,5 +1,12 @@
 {
   "name": "voice",
   "description": "Author your own response-voice personas — create with /voice:new, switch with /voice:use, restored each session",
-  "repository": "https://github.com/byExist/craken"
+  "repository": "https://github.com/byExist/craken",
+  "userConfig": {
+    "default": {
+      "type": "string",
+      "title": "default",
+      "description": "Persona to load at the start of any session that hasn't picked one with /voice:use (must match a saved persona name; see /voice:list). Leave empty for no default."
+    }
+  }
 }

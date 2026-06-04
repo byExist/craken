@@ -5,6 +5,8 @@
 # session_id comes from the hook's stdin JSON (hook commands don't get
 # ${CLAUDE_SESSION_ID} substitution). The persona printed to stdout is injected
 # as context at session start.
+# If this session has no selection, fall back to the configured default
+# (plugin userConfig "default" → CLAUDE_PLUGIN_OPTION_DEFAULT).
 set -euo pipefail
 
 dir="${CLAUDE_PLUGIN_DATA:-}"
@@ -21,12 +23,15 @@ if command -v jq >/dev/null 2>&1; then
 else
   sid="$(printf '%s' "$input" | sed -n 's/.*"session_id"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/p')"
 fi
-[ -n "$sid" ] || exit 0
 
-state="$state_dir/$sid"
-[ -f "$state" ] || exit 0
-
-voice="$(cat "$state" 2>/dev/null || true)"
+# This session's explicit /voice:use selection wins; otherwise fall back to the
+# configured default. session_id may be empty (rare), but default still applies.
+voice=""
+if [ -n "$sid" ]; then
+  state="$state_dir/$sid"
+  [ -f "$state" ] && voice="$(cat "$state" 2>/dev/null || true)"
+fi
+[ -n "$voice" ] || voice="${CLAUDE_PLUGIN_OPTION_DEFAULT:-}"
 [ -n "$voice" ] || exit 0
 # Persona names are slugs; reject anything else to guard against path traversal.
 case "$voice" in *[!a-zA-Z0-9_-]*) exit 0 ;; esac
