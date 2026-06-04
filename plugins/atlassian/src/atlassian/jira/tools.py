@@ -87,7 +87,7 @@ def search_issues(
     limit: int = 50,
     next_page_token: str | None = None,
 ) -> SearchAndReconcileResults:
-    """Search JIRA issues using JQL query. Description is omitted; use get_issue for full detail."""
+    """Search JIRA issues using JQL query. Description is not included; use get_issue for full detail."""
     result = client.search_issues(jql, max_results=limit, next_page_token=next_page_token)
     for issue in result.issues:
         if issue.fields:
@@ -374,7 +374,7 @@ def get_board_issues(
     start_at: int = 0,
     limit: int = 50,
 ) -> SearchResults:
-    """Get issues on an agile board. Description is omitted; use get_issue for full detail."""
+    """Get issues on an agile board. Description is not included; use get_issue for full detail."""
     result = client.get_board_issues(
         int(board_id),
         start_at=start_at,
@@ -391,7 +391,7 @@ def get_backlog_issues(
     start_at: int = 0,
     limit: int = 50,
 ) -> SearchResults:
-    """Get backlog issues (not assigned to any sprint) on a board. Description is omitted."""
+    """Get backlog issues (not assigned to any sprint) on a board. Description is not included; use get_issue for full detail."""
     result = client.get_backlog_issues(
         int(board_id),
         start_at=start_at,
@@ -408,7 +408,7 @@ def get_epic_issues(
     start_at: int = 0,
     limit: int = 50,
 ) -> SearchResults:
-    """Get issues belonging to an epic. Description is omitted; use get_issue for full detail."""
+    """Get issues belonging to an epic. Description is not included; use get_issue for full detail."""
     result = client.get_epic_issues(
         epic_key,
         start_at=start_at,
@@ -448,7 +448,7 @@ def get_sprint_issues(
     start_at: int = 0,
     limit: int = 50,
 ) -> SearchResults:
-    """Get issues in a specific sprint. Description is omitted; use get_issue for full detail."""
+    """Get issues in a specific sprint. Description is not included; use get_issue for full detail."""
     result = client.get_sprint_issues(
         int(sprint_id),
         start_at=start_at,

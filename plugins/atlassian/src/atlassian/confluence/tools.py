@@ -67,7 +67,7 @@ def list_pages(
     title: str | None = None,
     limit: int = 25,
 ) -> MultiEntityResultPage:
-    """List pages in a space, optionally filtered by title. Body is omitted; use get_page for full content."""
+    """List pages in a space, optionally filtered by title. Body is not included; use get_page for full content."""
     result = client.list_pages(space_id, title=title, limit=limit)
     for page in result.results:
         page.body = None
@@ -200,7 +200,7 @@ def update_page(
 
 
 def list_blog_posts(space_id: str | None = None, limit: int = 25) -> MultiEntityResultBlogPost:
-    """List blog posts, optionally filtered by space. Body is omitted; use get_blog_post for full content."""
+    """List blog posts, optionally filtered by space. Body is not included; use get_blog_post for full content."""
     result = client.list_blog_posts(space_id=space_id, limit=limit)
     for post in result.results:
         post.body = None
