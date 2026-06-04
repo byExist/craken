@@ -1,2 +1,5 @@
 # Localized skill docs (SKILL.<lang>.md), kept locally for maintenance
 SKILL.*.md
+
+# macOS
+.DS_Store
