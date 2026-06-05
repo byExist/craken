@@ -35,6 +35,7 @@ Research clones land in `~/.codebase/` and stay read-only. Edits happen in isola
 | --- | --- |
 | `codebase:with` | Explore a repo: structure, APIs, dependencies, issue root causes |
 | `codebase:repo` | *(helper)* clone / pull / checkout a repo for analysis |
+| `codebase:memo` | *(helper)* recall/record what reading the repo doesn't surface |
 | `codebase:clear` | Clean up the research cache by disk usage |
 
 ### Work — edit in isolated worktrees (`~/.worktree/`)
@@ -43,6 +44,7 @@ Research clones land in `~/.codebase/` and stay read-only. Edits happen in isola
 | --- | --- |
 | `codebase:work` | Branch, edit, and commit a repo in an isolated worktree |
 | `codebase:worktree` | *(helper)* set up a bare clone + worktree |
+| `codebase:notes` | *(helper)* recall/record what it takes to work the repo |
 | `codebase:prune` | Remove merged worktrees and branches |
 
 ## How it works
@@ -56,3 +58,5 @@ Research clones land in `~/.codebase/` and stay read-only. Edits happen in isola
 ```
 
 Exploring reads the latest `main`; working branches off into a worktree whose path mirrors the branch name. The two trees stay fully separate, so analysis stays clean while you edit.
+
+Alongside, each repo accrues **memo** (read-side) and **notes** (work-side) in the plugin's data dir, keyed by `<owner>/<repo>` — recalled automatically on later visits so the same context isn't re-derived.
