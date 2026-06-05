@@ -8,6 +8,7 @@ allowed-tools: Read, Grep, Glob, Bash(gh *), Bash(git *), Bash(ls *), Bash(mkdir
 
 1. Parse the request: target repo name(s), and a branch if one is named.
 2. Prepare each repo under `~/.codebase/<owner>/<repo>/` via `codebase:repo` (use the named branch when checking out).
+3. Recall each repo's memo via `codebase:memo <owner>/<repo>`.
 
 ## Environment
 
