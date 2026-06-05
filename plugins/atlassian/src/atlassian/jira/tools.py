@@ -155,6 +155,55 @@ def update_issue(
     return "OK"
 
 
+def change_issue_type(
+    issue_key: str,
+    issue_type: str,
+    parent: str | None = None,
+) -> str:
+    """Change an issue's type. Moving down a level (e.g. to a subtask) requires parent; moving up detaches the existing parent. Jumps across two levels and demoting an issue that has children are not supported."""
+    current = client.get_issue(issue_key)
+    cur = current.fields.issue_type if current.fields else None
+    if cur is None or cur.name is None or cur.hierarchy_level is None:
+        raise ValueError(f"cannot determine the current type of {issue_key}")
+    if cur.name == issue_type:
+        return f"already '{issue_type}'; no change"
+
+    target = next((t for t in client.list_issue_types() if t.name == issue_type), None)
+    if target is None:
+        raise ValueError(
+            f"unknown issue type '{issue_type}'; use list_issue_types to see valid names"
+        )
+    if target.hierarchy_level is None:
+        raise ValueError(f"cannot determine the hierarchy level of '{issue_type}'")
+
+    diff = target.hierarchy_level - cur.hierarchy_level
+    if abs(diff) >= 2:
+        raise ValueError(
+            f"cannot change '{cur.name}' to '{issue_type}' across multiple hierarchy levels"
+        )
+    if diff < 0:
+        if parent is None:
+            raise ValueError(
+                f"changing '{cur.name}' to '{issue_type}' moves it down a level and "
+                "requires parent (the key of the issue one level up)"
+            )
+        client.change_issue_type(issue_key, issue_type=issue_type, parent_key=parent)
+    elif diff > 0:
+        if parent is not None:
+            raise ValueError(
+                f"changing to '{issue_type}' moves it up a level and takes no parent "
+                "(the existing parent is removed)"
+            )
+        client.change_issue_type(issue_key, issue_type=issue_type, clear_parent=True)
+    else:
+        if parent is not None:
+            raise ValueError(
+                f"changing to '{issue_type}' stays at the same level and takes no parent"
+            )
+        client.change_issue_type(issue_key, issue_type=issue_type)
+    return "OK"
+
+
 def assign_issue(issue_key: str, assignee: str | None = None) -> str:
     """Assign an issue to a user, or unassign if assignee is null."""
     client.assign_issue(issue_key, assignee)

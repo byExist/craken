@@ -442,6 +442,26 @@ def update_issue(
     resp.raise_for_status()
 
 
+def change_issue_type(
+    issue_key: str,
+    *,
+    issue_type: str,
+    parent_key: str | None = None,
+    clear_parent: bool = False,
+) -> None:
+    fields: dict[str, Any] = {"issuetype": {"name": issue_type}}
+    update: dict[str, Any] = {}
+    if parent_key is not None:
+        fields["parent"] = {"key": parent_key}
+    if clear_parent:
+        update["parent"] = [{"set": {"none": True}}]
+    body: dict[str, Any] = {"fields": fields}
+    if update:
+        body["update"] = update
+    resp = _get_client().put(f"/rest/api/3/issue/{issue_key}", json=body)
+    resp.raise_for_status()
+
+
 def delete_issue(issue_key: str) -> None:
     resp = _get_client().delete(f"/rest/api/3/issue/{issue_key}")
     resp.raise_for_status()

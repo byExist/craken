@@ -31,6 +31,7 @@ class IssueTypeDetails(JiraModel):
 
     name: str | None = None
     subtask: bool | None = None
+    hierarchy_level: int | None = None
 
 
 class Priority(JiraModel):

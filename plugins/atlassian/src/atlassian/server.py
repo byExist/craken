@@ -58,6 +58,7 @@ if config.write_enabled:
         [
             jira.create_issue,
             jira.update_issue,
+            jira.change_issue_type,
             jira.assign_issue,
             jira.delete_issue,
             jira.upload_attachment,
