@@ -7,7 +7,16 @@ from atlassian.config import config
 from atlassian.confluence import tools as confluence
 from atlassian.jira import tools as jira
 
-mcp = FastMCP("atlassian")
+mcp = FastMCP(
+    "atlassian",
+    instructions=(
+        "Jira and Confluence via Markdown (not raw ADF). Search issues with JQL "
+        "(jira_search_issues) and pages with CQL (confluence_search_content). "
+        "Write tools (create/update/delete) are gated by config and absent in "
+        "read-only sessions — if a write tool is missing, it can be enabled via "
+        "/plugin config atlassian."
+    ),
+)
 
 
 def _bind(prefix: str, fns: list[Callable[..., Any]]) -> None:

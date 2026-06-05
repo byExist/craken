@@ -2,6 +2,7 @@
   "name": "atlassian",
   "description": "Atlassian (JIRA, Confluence) integration via MCP",
   "repository": "https://github.com/byExist/craken",
+  "defaultEnabled": false,
   "userConfig": {
     "atlassian_url": {
       "type": "string",
@@ -26,7 +27,7 @@
       "type": "boolean",
       "title": "Enable write operations",
       "description": "Expose write tools (create / update / delete) for Jira and Confluence. Off by default — only read tools are available. Reload the plugin after changing.",
-      "default": true
+      "default": false
     }
   }
 }

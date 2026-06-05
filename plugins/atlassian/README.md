@@ -27,7 +27,7 @@ atlassian instead routes every body through [marklas](https://github.com/byExist
 
 That faithful round trip is atlassian's focus — Markdown in, Markdown out, structure preserved.
 
-Write tools (create / update / delete) are **on by default**; flip them off with `/plugin config atlassian` when you want a strictly read-only, exploration-only session.
+Write tools (create / update / delete) are **off by default** — only read tools are exposed, so a fresh session is strictly read-only. Turn them on with `/plugin config atlassian` when you need to create, update, or delete.
 
 ## Installation
 
@@ -44,7 +44,7 @@ Add and install the plugin:
 /plugin install atlassian@craken
 ```
 
-Then configure your Atlassian Cloud credentials with `/plugin config atlassian`:
+atlassian installs **disabled** by default. Enable it from `/plugin`, which prompts for your Atlassian Cloud credentials — or set them anytime with `/plugin config atlassian`:
 
 | Setting | Required | Description |
 | --- | --- | --- |
@@ -52,13 +52,13 @@ Then configure your Atlassian Cloud credentials with `/plugin config atlassian`:
 | Atlassian account email | ✅ | Account email |
 | Atlassian API token | ✅ | Create one at [id.atlassian.com](https://id.atlassian.com/manage-profile/security/api-tokens) — stored in your OS keychain |
 
-On first launch, uv provisions the dependencies into a local virtualenv. **Write tools are on by default** — toggle them off with `/plugin config atlassian` for a read-only session.
+On first launch, uv provisions the dependencies into a local virtualenv. **Write tools are off by default** — turn them on with `/plugin config atlassian` when you need to write.
 
 > **Cloud only.** Built on Jira REST v3 (ADF) and Confluence v2 (`atlas_doc_format`), so Server / Data Center isn't supported.
 
 ## Tools
 
-Write tools are included by default; turn them off with `/plugin config atlassian` for read-only. Bodies are Markdown both ways. Highlights:
+Write tools are off by default; turn them on with `/plugin config atlassian` when you need to write. Bodies are Markdown both ways. Highlights:
 
 | Jira (`jira_*`) | Confluence (`confluence_*`) |
 | --- | --- |
