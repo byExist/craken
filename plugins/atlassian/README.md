@@ -27,7 +27,7 @@ atlassian instead routes every body through [marklas](https://github.com/byExist
 
 That faithful round trip is atlassian's focus — Markdown in, Markdown out, structure preserved.
 
-Write tools (create / update / delete) are **off by default** — only read tools are exposed, so a fresh session is strictly read-only. Turn them on with `/plugin config atlassian` when you need to create, update, or delete.
+Write tools (create / update / delete) are **off by default** — only read tools are exposed, so a fresh session is strictly read-only.
 
 ## Installation
 
@@ -58,7 +58,7 @@ On first launch, uv provisions the dependencies into a local virtualenv. **Write
 
 ## Tools
 
-Write tools are off by default; turn them on with `/plugin config atlassian` when you need to write. Bodies are Markdown both ways. Highlights:
+Highlights:
 
 | Jira (`jira_*`) | Confluence (`confluence_*`) |
 | --- | --- |

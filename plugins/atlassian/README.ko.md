@@ -27,7 +27,7 @@ atlassian은 대신 모든 본문을 [marklas](https://github.com/byExist/markla
 
 그 충실한 왕복이 atlassian의 초점입니다 — Markdown으로 읽고, Markdown으로 쓰며, 구조는 보존됩니다.
 
-쓰기 도구(생성/수정/삭제)는 **기본 비활성**입니다. 읽기 도구만 노출되어 새 세션은 엄격한 read-only(탐색 전용)이며, 생성·수정·삭제가 필요하면 `/plugin config atlassian`에서 켤 수 있습니다.
+쓰기 도구(생성/수정/삭제)는 **기본 비활성**입니다. 읽기 도구만 노출되어 새 세션은 엄격한 read-only(탐색 전용)입니다.
 
 ## 설치
 
@@ -58,7 +58,7 @@ atlassian은 기본적으로 **비활성** 상태로 설치됩니다. `/plugin`�
 
 ## 도구
 
-쓰기 도구는 기본 비활성이며, 쓰기가 필요하면 `/plugin config atlassian`에서 켤 수 있습니다. 본문은 양방향 모두 Markdown입니다. 주요 도구:
+주요 도구:
 
 | Jira (`jira_*`) | Confluence (`confluence_*`) |
 | --- | --- |
