@@ -9,7 +9,7 @@ allowed-tools: Read, Write, Edit, Bash(cat *), Bash(echo *), Bash(mkdir *)
 ## Store
 
 ```
-${CLAUDE_PLUGIN_DATA}/memo/<owner>/<repo>/
+${CLAUDE_PLUGIN_DATA}/memos/<owner>/<repo>/
 ├── INDEX.md      # index
 └── <memo>.md     # one memo each
 ```
@@ -29,7 +29,7 @@ What a read of this repo doesn't surface. One memo, one topic — a topic is one
 
 ## Recording
 
-While exploring the repo, when you work out something a read doesn't surface — or anything the user explicitly asks you to record — record it. Show the proposed memo for the user's review before writing. Create the store if it doesn't exist.
+Record an understanding a read won't surface that you had to work out and would re-derive on a later visit — or anything the user explicitly asks you to record. Show the proposed memo for the user's review before writing. Create the store if it doesn't exist.
 
 ## Recall
 
@@ -37,4 +37,4 @@ Each memo records what was true when written, so confirm it against the current 
 
 Below is this repo's INDEX.md. Read any memo that fits the task.
 
-!`cat ${CLAUDE_PLUGIN_DATA}/memo/$ARGUMENTS/INDEX.md 2>/dev/null || echo '<empty>'`
+!`cat ${CLAUDE_PLUGIN_DATA}/memos/$ARGUMENTS/INDEX.md 2>/dev/null || echo '<empty>'`

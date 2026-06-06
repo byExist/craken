@@ -44,7 +44,7 @@
 | --- | --- |
 | `codebase:work` | 격리된 worktree에서 브랜치 생성·편집·커밋 |
 | `codebase:worktree` | *(헬퍼)* bare clone + worktree 셋업 |
-| `codebase:notes` | *(헬퍼)* repo 작업에 필요한 것 회상·기록 |
+| `codebase:note` | *(헬퍼)* repo 작업에 필요한 것 회상·기록 |
 | `codebase:prune` | 머지된 worktree·브랜치 정리 |
 
 ## 동작 방식
@@ -59,4 +59,4 @@
 
 조사는 최신 `main`을 읽고, 작업은 브랜치를 떠 worktree로 들어갑니다(경로가 브랜치명과 일치). 두 트리가 완전히 분리되어, 편집하는 동안에도 분석은 깨끗하게 유지됩니다.
 
-여기에 더해, 각 repo는 플러그인 data 디렉토리에 `<owner>/<repo>` 단위로 **memo**(읽기)·**notes**(작업)를 쌓아 — 다음 방문 때 자동 회상되어 같은 맥락을 다시 도출하지 않습니다.
+여기에 더해, 각 repo는 플러그인 data 디렉토리에 `<owner>/<repo>` 단위로 **memos**(읽기)·**notes**(작업)를 쌓아 — 다음 방문 때 자동 회상되어 같은 맥락을 다시 도출하지 않습니다.
