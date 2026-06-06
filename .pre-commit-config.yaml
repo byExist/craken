@@ -1,4 +1,4 @@
-# Lint Python on commit. Enable once per clone with: pre-commit install
+# Lint and type-check Python on commit. Enable once per clone with: pre-commit install
 # Python lives only in plugins/atlassian; ruff targets .py files automatically.
 repos:
   - repo: https://github.com/astral-sh/ruff-pre-commit
@@ -7,3 +7,15 @@ repos:
       - id: ruff-check
         args: [--fix]
       - id: ruff-format
+
+  # pyright runs through uv (in the plugin dir) so it resolves the project's
+  # deps and its strict [tool.pyright] config; checks the whole package, not
+  # just changed files.
+  - repo: local
+    hooks:
+      - id: pyright
+        name: pyright (strict)
+        entry: uv run --directory plugins/atlassian pyright
+        language: system
+        types: [python]
+        pass_filenames: false
