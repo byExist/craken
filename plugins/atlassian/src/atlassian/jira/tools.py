@@ -66,7 +66,9 @@ def get_project_versions(
     limit: int = 50,
 ) -> PageBeanVersion:
     """Get versions (releases) of a project."""
-    return client.get_project_versions(project_key, start_at=start_at, max_results=limit)
+    return client.get_project_versions(
+        project_key, start_at=start_at, max_results=limit
+    )
 
 
 def get_project_components(project_key: str) -> list[Component]:
@@ -88,7 +90,9 @@ def search_issues(
     next_page_token: str | None = None,
 ) -> SearchAndReconcileResults:
     """Search JIRA issues using JQL query. Description is not included; use get_issue for full detail."""
-    result = client.search_issues(jql, max_results=limit, next_page_token=next_page_token)
+    result = client.search_issues(
+        jql, max_results=limit, next_page_token=next_page_token
+    )
     for issue in result.issues:
         if issue.fields:
             issue.fields.description = None
@@ -108,7 +112,11 @@ def get_issue(
     issue = client.get_issue(issue_key)
     if issue.fields and isinstance(issue.fields.description, dict):
         issue.fields.description = to_md(issue.fields.description, plain=plain)
-    if to_file is not None and issue.fields and isinstance(issue.fields.description, str):
+    if (
+        to_file is not None
+        and issue.fields
+        and isinstance(issue.fields.description, str)
+    ):
         write_body(to_file, issue.fields.description)
         issue.fields.description = None
     return issue
@@ -231,7 +239,9 @@ def get_issue_type_metadata(
     limit: int = 50,
 ) -> PageOfCreateMetaIssueTypes:
     """Get available issue types for creating issues in a project."""
-    return client.get_issue_type_metadata(project_key, start_at=start_at, max_results=limit)
+    return client.get_issue_type_metadata(
+        project_key, start_at=start_at, max_results=limit
+    )
 
 
 def list_issue_types() -> list[IssueTypeDetails]:
@@ -349,7 +359,10 @@ def create_remote_issue_link(
 ) -> str:
     """Create a remote link on an issue."""
     client.create_remote_issue_link(
-        issue_key, url=url, title=title, relationship=relationship,
+        issue_key,
+        url=url,
+        title=title,
+        relationship=relationship,
     )
     return "OK"
 
@@ -529,7 +542,11 @@ def create_sprint(
 ) -> str:
     """Create a new sprint on a board."""
     client.create_sprint(
-        int(board_id), name, goal=goal, start_date=start_date, end_date=end_date,
+        int(board_id),
+        name,
+        goal=goal,
+        start_date=start_date,
+        end_date=end_date,
     )
     return "OK"
 

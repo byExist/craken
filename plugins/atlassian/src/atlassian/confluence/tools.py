@@ -95,7 +95,9 @@ def get_page_children(page_id: str, limit: int = 25) -> MultiEntityResultChildPa
     return client.get_page_children(page_id, limit=limit)
 
 
-def get_page_descendants(page_id: str, limit: int = 25, depth: int | None = None) -> MultiEntityResultChildPage:
+def get_page_descendants(
+    page_id: str, limit: int = 25, depth: int | None = None
+) -> MultiEntityResultChildPage:
     """Get all descendant pages (full subtree) of a page. get_page_children is one level; this is the whole tree."""
     return client.get_page_descendants(page_id, depth=depth, limit=limit)
 
@@ -199,7 +201,9 @@ def update_page(
 # --- Blog post ---
 
 
-def list_blog_posts(space_id: str | None = None, limit: int = 25) -> MultiEntityResultBlogPost:
+def list_blog_posts(
+    space_id: str | None = None, limit: int = 25
+) -> MultiEntityResultBlogPost:
     """List blog posts, optionally filtered by space. Body is not included; use get_blog_post for full content."""
     result = client.list_blog_posts(space_id=space_id, limit=limit)
     for post in result.results:
@@ -207,7 +211,9 @@ def list_blog_posts(space_id: str | None = None, limit: int = 25) -> MultiEntity
     return result
 
 
-def get_blog_post(blog_post_id: str, plain: bool = True, to_file: str | None = None) -> BlogPost:
+def get_blog_post(
+    blog_post_id: str, plain: bool = True, to_file: str | None = None
+) -> BlogPost:
     """Get a blog post by ID. Body is Markdown. Set plain=false to preserve ADF-only features for editing.
 
     Pass to_file (absolute path) to write the body to that file and omit it from the
@@ -285,7 +291,9 @@ def delete_blog_post(blog_post_id: str) -> str:
 # --- Comment ---
 
 
-def get_comments(page_id: str, limit: int = 25, plain: bool = True) -> MultiEntityResultComment:
+def get_comments(
+    page_id: str, limit: int = 25, plain: bool = True
+) -> MultiEntityResultComment:
     """Get comments on a page. Body is Markdown. Set plain=false to preserve ADF-only features for editing."""
     result = client.get_comments(page_id, limit=limit)
     for comment in result.results:
@@ -323,7 +331,9 @@ def reply_to_comment(page_id: str, parent_comment_id: str, content: str) -> str:
     return "OK"
 
 
-def get_comment_replies(comment_id: str, limit: int = 25, plain: bool = True) -> MultiEntityResultComment:
+def get_comment_replies(
+    comment_id: str, limit: int = 25, plain: bool = True
+) -> MultiEntityResultComment:
     """Get replies to a footer comment. Body is Markdown. Set plain=false to preserve ADF-only features."""
     result = client.get_comment_children(comment_id, limit=limit)
     for comment in result.results:
@@ -335,7 +345,9 @@ def get_comment_replies(comment_id: str, limit: int = 25, plain: bool = True) ->
 # --- Inline Comment ---
 
 
-def get_inline_comments(page_id: str, limit: int = 25, plain: bool = True) -> MultiEntityResultInlineComment:
+def get_inline_comments(
+    page_id: str, limit: int = 25, plain: bool = True
+) -> MultiEntityResultInlineComment:
     """Get inline comments on a page. Body is Markdown. Set plain=false to preserve ADF-only features for editing."""
     result = client.get_inline_comments(page_id, limit=limit)
     for comment in result.results:
@@ -372,7 +384,9 @@ def delete_inline_comment(comment_id: str) -> str:
     return "OK"
 
 
-def get_inline_comment_replies(comment_id: str, limit: int = 25, plain: bool = True) -> MultiEntityResultInlineComment:
+def get_inline_comment_replies(
+    comment_id: str, limit: int = 25, plain: bool = True
+) -> MultiEntityResultInlineComment:
     """Get replies to an inline comment. Body is Markdown. Set plain=false to preserve ADF-only features."""
     result = client.get_inline_comment_children(comment_id, limit=limit)
     for comment in result.results:
@@ -404,7 +418,9 @@ def remove_label(page_id: str, label: str) -> str:
 # --- Attachment ---
 
 
-def upload_attachment(page_id: str, filename: str, data_base64: str, comment: str | None = None) -> str:
+def upload_attachment(
+    page_id: str, filename: str, data_base64: str, comment: str | None = None
+) -> str:
     """Upload an attachment to a page. Data is base64-encoded."""
     raw = base64.b64decode(data_base64)
     client.upload_attachment(page_id, filename=filename, data=raw, comment=comment)
@@ -452,7 +468,9 @@ def copy_page(
     return "OK"
 
 
-def restore_page_version(page_id: str, version_number: int, message: str | None = None) -> str:
+def restore_page_version(
+    page_id: str, version_number: int, message: str | None = None
+) -> str:
     """Restore a page to a previous version (from get_page_versions)."""
     client.restore_page_version(
         page_id,

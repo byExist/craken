@@ -17,7 +17,9 @@ class LinkedIssueFields(JiraModel):
     summary: str | None = None
     status: StatusDetails | None = None
     priority: Priority | None = None
-    issue_type: IssueTypeDetails | None = Field(default=None, validation_alias="issuetype")
+    issue_type: IssueTypeDetails | None = Field(
+        default=None, validation_alias="issuetype"
+    )
     assignee: User | None = None
 
 

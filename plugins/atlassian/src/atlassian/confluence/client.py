@@ -26,7 +26,10 @@ from atlassian.config import get_auth
 from atlassian.confluence.schema.adf import ADF
 from atlassian.confluence.schema.ancestor import Ancestor, MultiEntityResultAncestor
 from atlassian.confluence.schema.analytics import ContentViews
-from atlassian.confluence.schema.attachment import Attachment, MultiEntityResultAttachment
+from atlassian.confluence.schema.attachment import (
+    Attachment,
+    MultiEntityResultAttachment,
+)
 from atlassian.confluence.schema.blog_post import BlogPost, MultiEntityResultBlogPost
 from atlassian.confluence.schema.comment import Comment, MultiEntityResultComment
 from atlassian.confluence.schema.inline_comment import (
@@ -43,7 +46,10 @@ from atlassian.confluence.schema.search import SearchResults
 from atlassian.confluence.schema.space import MultiEntityResultSpace, Space
 from atlassian.confluence.schema.task import MultiEntityResultTask, Task
 from atlassian.confluence.schema.user import User
-from atlassian.confluence.schema.version import MultiEntityResultPageVersion, PageVersion
+from atlassian.confluence.schema.version import (
+    MultiEntityResultPageVersion,
+    PageVersion,
+)
 
 # ---------------------------------------------------------------------------
 # Lazy singleton
@@ -814,7 +820,9 @@ def update_task(task_id: str, status: str) -> Task:
 # ---------------------------------------------------------------------------
 
 
-def upload_attachment(page_id: str, *, filename: str, data: bytes, comment: str | None = None) -> Attachment:
+def upload_attachment(
+    page_id: str, *, filename: str, data: bytes, comment: str | None = None
+) -> Attachment:
     client = _get_client()
     files = {"file": (filename, data)}
     form_data: dict[str, str] = {"minorEdit": "true"}

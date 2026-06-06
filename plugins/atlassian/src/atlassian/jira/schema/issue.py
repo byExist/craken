@@ -20,7 +20,9 @@ class JiraIssueFields(JiraModel):
     status: StatusDetails | None = None
     assignee: User | None = None
     reporter: User | None = None
-    issue_type: IssueTypeDetails | None = Field(default=None, validation_alias="issuetype")
+    issue_type: IssueTypeDetails | None = Field(
+        default=None, validation_alias="issuetype"
+    )
     priority: Priority | None = None
     labels: list[str] = []
     created: str | None = None

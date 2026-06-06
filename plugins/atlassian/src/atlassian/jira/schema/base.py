@@ -2,7 +2,12 @@
 
 from typing import Any
 
-from pydantic import BaseModel, ConfigDict, SerializerFunctionWrapHandler, model_serializer
+from pydantic import (
+    BaseModel,
+    ConfigDict,
+    SerializerFunctionWrapHandler,
+    model_serializer,
+)
 
 
 def _to_camel(snake: str) -> str:
