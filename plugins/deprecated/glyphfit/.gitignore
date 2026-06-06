@@ -1,5 +1,0 @@
-.venv/
-__pycache__/
-*.pyc
-*.shrunk.webp
-.vscode/

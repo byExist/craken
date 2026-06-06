@@ -18,5 +18,3 @@
 | [codebase](plugins/codebase/README.md) | Explore and work on any GitHub codebase — research read-only, or edit in isolated worktrees |
 | [voice](plugins/voice/README.md) | Author your own response personas — create with `/voice:new`, switch with `/voice:use`, restored each session |
 | [atlassian](plugins/atlassian/README.md) | Jira & Confluence in Claude — issue and page bodies as faithful Markdown, not flattened ADF |
-
-> Deprecated plugins are archived in [plugins/deprecated/](plugins/deprecated) — removed from the marketplace and no longer installable.
