@@ -1,0 +1,9 @@
+# Lint Python on commit. Enable once per clone with: pre-commit install
+# Python lives only in plugins/atlassian; ruff targets .py files automatically.
+repos:
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.14.6
+    hooks:
+      - id: ruff-check
+        args: [--fix]
+      - id: ruff-format
