@@ -25,7 +25,7 @@ Per-repo notes kept across worktrees.
 
 ## <note>.md
 
-What to know or do to work this repo, and why.
+What to know or do to work this repo, and why. One note, one topic — a topic is one concern, not one fact. Keep a concern's steps and angles together; split only when two concerns mix.
 
 ## Recording
 

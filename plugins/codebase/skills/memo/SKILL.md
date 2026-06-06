@@ -25,7 +25,7 @@ Per-repo understanding kept across sessions.
 
 ## <memo>.md
 
-What a read of this repo doesn't surface.
+What a read of this repo doesn't surface. One memo, one topic — a topic is one concern, not one fact. Keep a concern's steps and angles together; split only when two concerns mix.
 
 ## Recording
 
