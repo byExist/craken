@@ -5,6 +5,7 @@ from mcp.server.fastmcp import FastMCP
 
 from atlassian.config import config
 from atlassian.confluence import tools as confluence
+from atlassian.jira import permissions as jira_permissions
 from atlassian.jira import tools as jira
 
 mcp = FastMCP(
@@ -19,9 +20,20 @@ mcp = FastMCP(
 )
 
 
-def _bind(prefix: str, fns: list[Callable[..., Any]]) -> None:
+def _bind(
+    prefix: str,
+    fns: list[Callable[..., Any]],
+    *,
+    gated: set[str] | None = None,
+) -> None:
     for fn in fns:
-        mcp.tool(name=f"{prefix}_{fn.__name__}")(fn)
+        if gated is None:
+            mcp.tool(name=f"{prefix}_{fn.__name__}")(fn)
+        else:
+            mcp.tool(
+                name=f"{prefix}_{fn.__name__}",
+                description=jira_permissions.describe(fn, gated),
+            )(fn)
 
 
 # --- JIRA ---
@@ -62,6 +74,7 @@ _bind(
 )
 
 if config.write_enabled:
+    _gated = jira_permissions.globally_unavailable()
     _bind(
         "jira",
         [
@@ -94,6 +107,7 @@ if config.write_enabled:
             jira.update_sprint,
             jira.delete_sprint,
         ],
+        gated=_gated,
     )
 
 # --- Confluence ---
@@ -127,6 +141,9 @@ _bind(
     ],
 )
 
+# Confluence has no global self-permission API (unlike Jira's /mypermissions),
+# so there is no bind-time gating to apply here; permission gaps surface as 403s
+# (handled by the client's forbidden hook).
 if config.write_enabled:
     _bind(
         "confluence",

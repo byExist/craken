@@ -15,6 +15,7 @@ from typing import Any
 
 import httpx
 
+from atlassian.hooks import forbidden_hook
 from atlassian.config import get_auth
 
 from atlassian.jira.schema.adf import ADF
@@ -35,6 +36,7 @@ from atlassian.jira.schema.issue import (
 from atlassian.jira.schema.issue_type_meta import PageOfCreateMetaIssueTypes
 from atlassian.jira.schema.label import PageBeanLabel
 from atlassian.jira.schema.link_type import IssueLinkTypes
+from atlassian.jira.schema.permission import Permissions
 from atlassian.jira.schema.project import PageBeanProject, Project
 from atlassian.jira.schema.remote_link import RemoteIssueLink, RemoteIssueLinkIdentifies
 from atlassian.jira.schema.sprint import SprintBean, SprintPage
@@ -61,6 +63,7 @@ def _get_client() -> httpx.Client:
             # No default Content-Type: httpx sets it per request (application/json
             # for json=, multipart for files=). A fixed default would break uploads.
             headers={"Accept": "application/json"},
+            event_hooks={"response": [forbidden_hook("Jira", "project")]},
         )
     return _client
 
@@ -268,6 +271,28 @@ def get_current_user() -> User:
     resp = _get_client().get("/rest/api/3/myself")
     resp.raise_for_status()
     return User.model_validate(resp.json())
+
+
+def get_my_permissions(
+    keys: list[str],
+    *,
+    project_key: str | None = None,
+    issue_key: str | None = None,
+) -> Permissions:
+    """Get the user's permissions via /mypermissions.
+
+    Without project_key/issue_key this reports the *global* context: a PROJECT
+    permission is reported True if the user has it in any project, so a False
+    there means the account lacks it everywhere.
+    """
+    params: dict[str, str] = {"permissions": ",".join(keys)}
+    if project_key is not None:
+        params["projectKey"] = project_key
+    if issue_key is not None:
+        params["issueKey"] = issue_key
+    resp = _get_client().get("/rest/api/3/mypermissions", params=params)
+    resp.raise_for_status()
+    return Permissions.model_validate(resp.json())
 
 
 def search_users(
