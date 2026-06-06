@@ -22,7 +22,10 @@
     },
     {
       "name": "atlassian",
-      "source": "./plugins/atlassian",
+      "source": {
+        "source": "github",
+        "repo": "byExist/craken-atlassian"
+      },
       "description": "Atlassian (JIRA, Confluence) integration via MCP"
     }
   ]

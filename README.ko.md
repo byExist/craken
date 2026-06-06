@@ -17,4 +17,4 @@
 | [meta](plugins/meta/README.ko.md) | Claude Code 자체 구성 요소(skill·agent·hook·MCP 등)를 작성·리뷰 |
 | [codebase](plugins/codebase/README.ko.md) | 어떤 GitHub 코드베이스든 조사·작업 — 읽기 전용 분석 또는 격리 worktree 편집 |
 | [voice](plugins/voice/README.ko.md) | 나만의 응답 페르소나를 직접 정의 — `/voice:new`로 만들고 `/voice:use`로 전환, 세션마다 복원 |
-| [atlassian](plugins/atlassian/README.ko.md) | Claude에서 Jira·Confluence — 이슈·페이지 본문을 납작한 ADF가 아니라 충실한 Markdown으로 |
+| [atlassian](https://github.com/byExist/craken-atlassian) | Claude에서 Jira·Confluence — 이슈·페이지 본문을 납작한 ADF가 아니라 충실한 Markdown으로 |
