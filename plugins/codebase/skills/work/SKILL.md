@@ -6,8 +6,8 @@ allowed-tools: Read, Grep, Glob, Edit, Write, Bash(gh *), Bash(git *), Bash(ls *
 
 ## Setup
 
-1. Parse the request: target repo, branch (ask if not given), the change.
-2. Prepare the worktree via `codebase:worktree` → `~/.worktree/<owner>/<repo>/<branch>/`.
+1. Parse the request: target repo, the change, and the branch — its name and whether it's new or existing (ask if unclear).
+2. Prepare the worktree via `codebase:worktree`; it resolves the keyword to `<owner>/<repo>` → `~/.worktree/<owner>/<repo>/<branch>/`. Use that `<owner>/<repo>` for the steps below.
 3. Recall this repo's memos via `codebase:recall <owner>/<repo>`.
 
 ## Environment

@@ -14,6 +14,10 @@ ${CLAUDE_PLUGIN_DATA}/memos/<owner>/<repo>/
 └── <memo>.md     # one memo each
 ```
 
+This repo's store path and current index:
+
+!`d="${CLAUDE_PLUGIN_DATA}/memos/$ARGUMENTS"; echo "store: $d"; cat "$d/INDEX.md" 2>/dev/null || echo '<empty>'`
+
 ## INDEX.md
 
 ```
