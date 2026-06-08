@@ -10,6 +10,12 @@
 
 ---
 
+## Installation
+
+```bash
+/plugin marketplace add byExist/craken
+```
+
 ## Plugins
 
 | Plugin | Description |
