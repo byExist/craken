@@ -8,9 +8,13 @@ allowed-tools: Read, Grep, Glob, Edit, Write, Bash(gh *), Bash(git *), Bash(ls *
 
 1. Parse the request: target repo, branch (ask if not given), the change.
 2. Prepare the worktree via `codebase:worktree` → `~/.worktree/<owner>/<repo>/<branch>/`.
-3. Recall this repo's memo via `codebase:memo <owner>/<repo>`.
+3. Recall this repo's memos via `codebase:recall <owner>/<repo>`.
 
 ## Environment
 
 - Work inside `~/.worktree/<owner>/<repo>/<branch>/`.
 - `~/.codebase/` stays read-only here — it holds the local clones.
+
+## Wrap-up
+
+When the work is committed, record anything worth keeping via `codebase:record <owner>/<repo>`.

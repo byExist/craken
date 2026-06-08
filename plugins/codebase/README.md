@@ -49,7 +49,8 @@ Research clones land in `~/.codebase/` and stay read-only. Edits happen in isola
 
 | Skill | What it does |
 | --- | --- |
-| `codebase:memo` | *(helper)* recall/record what a read or checkout doesn't surface |
+| `codebase:recall` | *(helper)* read the memo index at setup |
+| `codebase:record` | *(helper)* save what a read or checkout didn't surface, after the work |
 
 ## How it works
 
@@ -63,4 +64,4 @@ Research clones land in `~/.codebase/` and stay read-only. Edits happen in isola
 
 Exploring reads the latest `main`; working branches off into a worktree whose path mirrors the branch name. The two trees stay fully separate, so analysis stays clean while you edit.
 
-Alongside, each repo accrues **memos** in the plugin's data dir, keyed by `<owner>/<repo>` and shared by exploring and working alike — recalled automatically on later visits so the same context isn't re-derived.
+Alongside, each repo accrues **memos** in the plugin's data dir, keyed by `<owner>/<repo>` and shared by exploring and working alike — recalled at setup so the same context isn't re-derived, and recorded once the work is done.
