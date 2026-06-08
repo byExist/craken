@@ -35,7 +35,6 @@
 | --- | --- |
 | `codebase:with` | repo 탐색: 구조·API·의존성·이슈 근본 원인 |
 | `codebase:repo` | *(헬퍼)* 분석용 repo clone / pull / checkout |
-| `codebase:memo` | *(헬퍼)* repo를 읽어도 드러나지 않는 것 회상·기록 |
 | `codebase:clear` | 디스크 사용량 기준 조사 캐시 정리 |
 
 ### Work — 격리된 worktree에서 편집 (`~/.worktree/`)
@@ -44,8 +43,13 @@
 | --- | --- |
 | `codebase:work` | 격리된 worktree에서 브랜치 생성·편집·커밋 |
 | `codebase:worktree` | *(헬퍼)* bare clone + worktree 셋업 |
-| `codebase:note` | *(헬퍼)* repo 작업에 필요한 것 회상·기록 |
 | `codebase:prune` | 머지된 worktree·브랜치 정리 |
+
+### Memory — 조사·작업 양쪽이 공유
+
+| 스킬 | 설명 |
+| --- | --- |
+| `codebase:memo` | *(헬퍼)* repo를 읽거나 체크아웃해도 드러나지 않는 것 회상·기록 |
 
 ## 동작 방식
 
@@ -59,4 +63,4 @@
 
 조사는 최신 `main`을 읽고, 작업은 브랜치를 떠 worktree로 들어갑니다(경로가 브랜치명과 일치). 두 트리가 완전히 분리되어, 편집하는 동안에도 분석은 깨끗하게 유지됩니다.
 
-여기에 더해, 각 repo는 플러그인 data 디렉토리에 `<owner>/<repo>` 단위로 **memos**(읽기)·**notes**(작업)를 쌓아 — 다음 방문 때 자동 회상되어 같은 맥락을 다시 도출하지 않습니다.
+여기에 더해, 각 repo는 플러그인 data 디렉토리에 `<owner>/<repo>` 단위로 **memos**를 쌓고, 이는 조사·작업 양쪽이 공유합니다 — 다음 방문 때 자동 회상되어 같은 맥락을 다시 도출하지 않습니다.
