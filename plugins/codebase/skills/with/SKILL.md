@@ -7,7 +7,7 @@ allowed-tools: Read, Grep, Glob, Bash(gh *), Bash(git *), Bash(ls *), Bash(mkdir
 ## Setup
 
 1. Parse the request: target repo name(s), and a branch if one is named.
-2. Prepare each repo via `codebase:repo`; it resolves each keyword to `<owner>/<repo>` under `~/.codebase/<owner>/<repo>/` (use the named branch when checking out). Use those `<owner>/<repo>` for recall below.
+2. Prepare each repo via `codebase:repo`.
 3. Recall each repo's memos via `codebase:recall <owner>/<repo>`.
 
 ## Environment
@@ -16,4 +16,4 @@ allowed-tools: Read, Grep, Glob, Bash(gh *), Bash(git *), Bash(ls *), Bash(mkdir
 
 ## Wrap-up
 
-When the exploration is done, record anything worth keeping via `codebase:record <owner>/<repo>`.
+When the exploration is done, review what was discovered. If there is information that remains valid the next time this repo is opened — not one-off context for this task alone — present it briefly and ask the user whether to record it. If they agree, call `codebase:record <owner>/<repo>`.
