@@ -1,6 +1,5 @@
 ---
-description: "Clean up worktrees and merged branches under ~/.worktree/. List worktrees with merge status, select and remove merged or stale ones."
-disable-model-invocation: true
+description: "Clean up worktrees and branches when work is done."
 argument-hint: "[keyword]"
 allowed-tools: Bash(git *), Bash(ls *), Bash(cd *), Bash(rm -rf ~/.worktree/*)
 ---
@@ -22,7 +21,11 @@ done
 
 ### Step 1: Select
 
-If the block above is empty, tell the user there is nothing to prune and stop. Otherwise present the worktrees via AskUserQuestion (multiSelect: true), flagging **merged** (safe to remove) vs **unmerged** (would lose work).
+If the block above is empty, tell the user there is nothing to prune and stop.
+
+If the current conversation has an active `codebase:work` or `codebase:with` context (repo and branch are known), resolve the target worktree from that context and proceed to Step 2 directly.
+
+Otherwise, present all worktrees via AskUserQuestion (multiSelect: true), flagging **merged** (safe to remove) vs **unmerged** (would lose work).
 
 ### Step 2: Remove
 

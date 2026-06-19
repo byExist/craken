@@ -1,6 +1,5 @@
 ---
-description: "Clean up locally cloned repos under ~/.codebase/. List repos with disk usage, select and remove unused ones."
-disable-model-invocation: true
+description: "Free up disk by removing locally cloned repos that are no longer needed."
 argument-hint: "[keyword]"
 allowed-tools: Bash(du *), Bash(ls *), Bash(rmdir *), Bash(rm -rf ~/.codebase/*)
 ---

@@ -1,5 +1,5 @@
 ---
-description: "GitHub repo clone/pull/checkout management. Referenced by the with skill when preparing code locally."
+description: "Clone and keep GitHub repos up to date under ~/.codebase/."
 user-invocable: false
 allowed-tools: Bash(gh *), Bash(git *), Bash(ls *), Bash(mkdir *)
 ---

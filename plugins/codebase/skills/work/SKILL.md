@@ -1,5 +1,5 @@
 ---
-description: "Make code changes to a GitHub repo in an isolated worktree — branch, edit, and commit under ~/.worktree/. Use when editing or contributing to a repo, not just reading it."
+description: "Make code changes to a GitHub repo in an isolated worktree."
 argument-hint: "<repo-name> <branch> <request>"
 allowed-tools: Read, Grep, Glob, Edit, Write, Bash(gh *), Bash(git *), Bash(ls *), Bash(mkdir *), Bash(cd *), Task
 ---

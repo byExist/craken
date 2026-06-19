@@ -1,5 +1,5 @@
 ---
-description: "Record a repo memo after exploration or work is done — what a read or checkout didn't surface. Referenced by the with and work skills, which pass <owner>/<repo>."
+description: "Save non-obvious findings from exploration or work as repo memos."
 user-invocable: false
 allowed-tools: Read, Write, Edit, Bash(cat *), Bash(echo *), Bash(mkdir *)
 ---

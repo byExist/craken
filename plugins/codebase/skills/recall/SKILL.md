@@ -1,5 +1,5 @@
 ---
-description: "Recall a repo's memos — read the index, open what fits. Referenced by the with and work skills at setup, which pass <owner>/<repo>."
+description: "Load previously recorded memos for this repo."
 user-invocable: false
 allowed-tools: Read, Bash(cat *), Bash(echo *)
 ---
