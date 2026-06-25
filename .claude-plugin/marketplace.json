@@ -6,11 +6,6 @@
   "description": "A marketplace orchestrating Claude Code plugins like tentacles",
   "plugins": [
     {
-      "name": "meta",
-      "source": "./plugins/meta",
-      "description": "Meta plugin for Claude Code itself — skills, agents, hooks, plugins, permissions, and other Claude Code configurations"
-    },
-    {
       "name": "codebase",
       "source": "./plugins/codebase",
       "description": "Explore and work on any GitHub codebase — research read-only, or edit in isolated worktrees"
