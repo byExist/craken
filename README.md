@@ -18,9 +18,17 @@
 
 ## Plugins
 
+### Built-in
+
 | Plugin | Description |
 | --- | --- |
-| [meta](plugins/meta/README.md) | Author and review Claude Code's own building blocks — skills, agents, hooks, MCP, and more |
-| [codebase](plugins/codebase/README.md) | Explore and work on any GitHub codebase — research read-only, or edit in isolated worktrees |
-| [voice](plugins/voice/README.md) | Author your own response personas — create with `/voice:new`, switch with `/voice:use`, restored each session |
-| [atlassian](https://github.com/byExist/craken-atlassian) | Jira & Confluence in Claude — issue and page bodies as faithful Markdown, not flattened ADF |
+| [codebase](plugins/codebase/README.md) | Research any GitHub codebase read-only, or edit it in an isolated worktree |
+| [voice](plugins/voice/README.md) | Define and switch your own response personas with `/voice:new` and `/voice:use`, restored every session |
+
+### Integrations
+
+| Plugin | Description |
+| --- | --- |
+| [atlassian](https://github.com/byExist/craken-atlassian) | Jira and Confluence as faithful Markdown instead of flattened ADF |
+| [slack](https://github.com/byExist/craken-slack) | Read and search Slack channels, threads, messages, and users over the official SDK |
+| [datadog](https://github.com/byExist/craken-datadog) | Read-only access to Datadog logs, APM traces, metrics, monitors, and incidents |
