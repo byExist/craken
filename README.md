@@ -1,7 +1,7 @@
 <h1 align="center">Craken</h1>
 
 <p align="center">
-  <b>C</b>laude code + K<b>raken</b> — a marketplace orchestrating plugins like tentacles.
+  <b>C</b>laude code + K<b>raken</b> — a marketplace that gives Claude Code more arms.
 </p>
 
 <p align="center">
