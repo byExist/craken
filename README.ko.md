@@ -23,7 +23,6 @@
 | Plugin | Description |
 | --- | --- |
 | [codebase](plugins/codebase/README.ko.md) | GitHub 코드베이스를 읽기 전용으로 조사하거나 격리된 worktree에서 편집 |
-| [voice](plugins/voice/README.ko.md) | `/voice:new`와 `/voice:use`로 나만의 응답 페르소나를 정의·전환하고 세션마다 복원 |
 
 ### 연동
 

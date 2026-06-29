@@ -23,7 +23,6 @@
 | Plugin | Description |
 | --- | --- |
 | [codebase](plugins/codebase/README.md) | Research any GitHub codebase read-only, or edit it in an isolated worktree |
-| [voice](plugins/voice/README.md) | Define and switch your own response personas with `/voice:new` and `/voice:use`, restored every session |
 
 ### Integrations
 

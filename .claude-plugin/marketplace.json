@@ -11,11 +11,6 @@
       "description": "Explore and work on any GitHub codebase — research read-only, or edit in isolated worktrees"
     },
     {
-      "name": "voice",
-      "source": "./plugins/voice",
-      "description": "Author your own response-voice personas — create with /voice:new, switch with /voice:use, restored each session"
-    },
-    {
       "name": "atlassian",
       "source": {
         "source": "github",
