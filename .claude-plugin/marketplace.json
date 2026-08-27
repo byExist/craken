@@ -6,11 +6,6 @@
   "description": "A marketplace orchestrating Claude Code plugins like tentacles",
   "plugins": [
     {
-      "name": "codebase",
-      "source": "./plugins/codebase",
-      "description": "Explore and work on any GitHub codebase — research read-only, or edit in isolated worktrees"
-    },
-    {
       "name": "atlassian",
       "source": {
         "source": "github",
@@ -25,14 +20,6 @@
         "repo": "byExist/craken-slack"
       },
       "description": "Slack in Claude — channels, messages, users, and search via MCP"
-    },
-    {
-      "name": "datadog",
-      "source": {
-        "source": "github",
-        "repo": "byExist/craken-datadog"
-      },
-      "description": "Datadog (logs, metrics, traces, monitors) integration via MCP"
     }
   ]
 }
