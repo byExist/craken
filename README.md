@@ -18,16 +18,7 @@
 
 ## Plugins
 
-### Built-in
-
-| Plugin | Description |
-| --- | --- |
-| [codebase](plugins/codebase/README.md) | Research any GitHub codebase read-only, or edit it in an isolated worktree |
-
-### Integrations
-
 | Plugin | Description |
 | --- | --- |
 | [atlassian](https://github.com/byExist/craken-atlassian) | Jira and Confluence as faithful Markdown instead of flattened ADF |
 | [slack](https://github.com/byExist/craken-slack) | Read and search Slack channels, threads, messages, and users over the official SDK |
-| [datadog](https://github.com/byExist/craken-datadog) | Read-only access to Datadog logs, APM traces, metrics, monitors, and incidents |
